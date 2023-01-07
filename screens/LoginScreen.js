@@ -4,11 +4,13 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  GoogleAuthProvider,
 } from "firebase/auth";
 import app from "../firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
 
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 const Login = () => {
   const [userData, onChangeText] = useState({
