@@ -2,7 +2,7 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from "../firebaseConfig";
-
+import { useNavigation } from "@react-navigation/native";
 const auth = getAuth(app);
 
 const Login = () => {
@@ -11,6 +11,8 @@ const Login = () => {
     password: "",
   });
 
+  const navigation = useNavigation();
+
   const logUser = () => {
     console.log(userData);
     createUserWithEmailAndPassword(auth, userData.email, userData.password)
@@ -18,6 +20,8 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         // ...
+        console.log(user);
+        navigation.navigate("Home", { user: user.uid });
       })
       .catch((error) => {
         const errorCode = error.code;
