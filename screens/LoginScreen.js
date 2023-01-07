@@ -3,9 +3,13 @@ import React, { useState } from "react";
 
 const Login = () => {
   const [userData, onChangeText] = React.useState({
-    email: null,
-    password: null,
+    email: "",
+    password: "",
   });
+
+  const logUser = () => {
+    console.log(userData);
+  };
 
   return (
     <View className="flex-1 border-2 items-center justify-center">
@@ -15,7 +19,7 @@ const Login = () => {
           <TextInput
             className="border-2 p-2"
             value={userData.email}
-            onChangeText={onChangeText}
+            onChangeText={(data) => onChangeText({ ...userData, email: data })}
             placeholder="Email"
           />
         </View>
@@ -23,12 +27,17 @@ const Login = () => {
           <Text className="font-extrabold">Password</Text>
           <TextInput
             className="border-2 p-2"
-            value={userData.email}
-            onChangeText={onChangeText}
+            value={userData.password}
+            onChangeText={(data) =>
+              onChangeText({ ...userData, password: data })
+            }
             placeholder="Password"
           />
         </View>
-        <TouchableOpacity className="bg-green-500 p-2 rounded">
+        <TouchableOpacity
+          className="bg-green-500 p-2 rounded"
+          onPress={logUser}
+        >
           <Text className="text-center font-bold text-white">Login</Text>
         </TouchableOpacity>
         <TouchableOpacity className="bg-blue-500 p-2 rounded">
