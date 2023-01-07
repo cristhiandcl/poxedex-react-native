@@ -1,14 +1,29 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import app from "../firebaseConfig";
+
+const auth = getAuth(app);
 
 const Login = () => {
-  const [userData, onChangeText] = React.useState({
+  const [userData, onChangeText] = useState({
     email: "",
     password: "",
   });
 
   const logUser = () => {
     console.log(userData);
+    createUserWithEmailAndPassword(auth, userData.email, userData.password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
   };
 
   return (
@@ -32,6 +47,7 @@ const Login = () => {
               onChangeText({ ...userData, password: data })
             }
             placeholder="Password"
+            secureTextEntry={true}
           />
         </View>
         <TouchableOpacity
