@@ -1,8 +1,13 @@
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import app from "../firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
+
 const auth = getAuth(app);
 
 const Login = () => {
@@ -11,22 +16,42 @@ const Login = () => {
     password: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
   const navigation = useNavigation();
 
   const logUser = () => {
     console.log(userData);
+    signInWithEmailAndPassword(auth, userData.email, userData.password)
+      .then((userCredential) => {
+        // Signed in
+        setErrorMessage("");
+        const user = userCredential.user;
+        navigation.navigate("Home", { user: user.uid });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        setErrorMessage(
+          error.message.replace("Firebase: Error (auth/", "").replace(").", "")
+        );
+      });
+  };
+
+  const createUser = () => {
+    console.log(userData);
+
     createUserWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {
         // Signed in
+        setErrorMessage("");
         const user = userCredential.user;
-        // ...
         console.log(user);
         navigation.navigate("Home", { user: user.uid });
       })
       .catch((error) => {
         const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
+        setErrorMessage(
+          error.message.replace("Firebase: Error (auth/", "").replace(").", "")
+        );
       });
   };
 
@@ -41,6 +66,11 @@ const Login = () => {
             onChangeText={(data) => onChangeText({ ...userData, email: data })}
             placeholder="Email"
           />
+          {errorMessage.includes("email") && (
+            <Text className="font-extrabold text-red-600 text-xs">
+              {errorMessage}
+            </Text>
+          )}
         </View>
         <View className="space-y-2">
           <Text className="font-extrabold">Password</Text>
@@ -53,6 +83,11 @@ const Login = () => {
             placeholder="Password"
             secureTextEntry={true}
           />
+          {errorMessage.includes("password") && (
+            <Text className="font-extrabold text-red-600 text-xs">
+              {errorMessage}
+            </Text>
+          )}
         </View>
         <TouchableOpacity
           className="bg-green-500 p-2 rounded"
@@ -60,7 +95,10 @@ const Login = () => {
         >
           <Text className="text-center font-bold text-white">Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity className="bg-blue-500 p-2 rounded">
+        <TouchableOpacity
+          className="bg-blue-500 p-2 rounded"
+          onPress={createUser}
+        >
           <Text className="text-center font-bold text-white">
             Create Account
           </Text>

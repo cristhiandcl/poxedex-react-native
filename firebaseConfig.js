@@ -1,6 +1,5 @@
 import { DefaultTheme } from "@react-navigation/native";
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 
 // Optionally import the services that you want to use
 // import {...} from "firebase/auth";
@@ -20,4 +19,5 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 export default app;
