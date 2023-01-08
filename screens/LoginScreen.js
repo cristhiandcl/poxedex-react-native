@@ -1,4 +1,11 @@
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  signInWithPopup,
+} from "react-native";
 import React, { useState } from "react";
 import {
   getAuth,
