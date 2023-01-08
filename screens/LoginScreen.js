@@ -21,8 +21,10 @@ const Login = () => {
     password: "",
   });
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    clientId:
-      "8939602846-p68pru6fb4skkbfgs5jv09bbsrpng5qr.apps.googleusercontent.com",
+    // clientId:
+    //   "8939602846-p68pru6fb4skkbfgs5jv09bbsrpng5qr.apps.googleusercontent.com",
+    expoClientId:
+      "1095308608247-oonq59bouiq886ackp5oek06mjn9qdti.apps.googleusercontent.com",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -34,7 +36,12 @@ const Login = () => {
       const auth = getAuth();
       const credential = GoogleAuthProvider.credential(id_token);
       console.log(id_token);
-      signInWithCredential(auth, credential);
+      console.log(credential);
+      signInWithCredential(auth, credential).then((result) => {
+        console.log(result.user);
+        navigation.navigate("Home", { user: result.user.displayName });
+      });
+      console.log("Done");
     }
   }, [response]);
 
