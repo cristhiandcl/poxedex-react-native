@@ -19,6 +19,7 @@ import app from "../firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
+import { KEYS } from "../keys";
 
 const auth = getAuth(app);
 WebBrowser.maybeCompleteAuthSession();
@@ -29,10 +30,7 @@ const Login = () => {
     password: "",
   });
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    // clientId:
-    //   "8939602846-p68pru6fb4skkbfgs5jv09bbsrpng5qr.apps.googleusercontent.com",
-    expoClientId:
-      "1095308608247-oonq59bouiq886ackp5oek06mjn9qdti.apps.googleusercontent.com",
+    expoClientId: KEYS.expoClientId,
   });
 
   const [errorMessage, setErrorMessage] = useState("");
@@ -46,7 +44,6 @@ const Login = () => {
       console.log(id_token);
       console.log(credential);
       signInWithCredential(auth, credential).then((result) => {
-        // console.log(result.user);
         navigation.navigate("Home", { user: result.user.displayName });
       });
       console.log("Done");
@@ -67,7 +64,6 @@ const Login = () => {
         setErrorMessage(
           error.message.replace("Firebase: Error (auth/", "").replace(").", "")
         );
-        // console.log(error.message.includes("password"));
       });
   };
 
@@ -90,8 +86,6 @@ const Login = () => {
         console.log(error.message);
       });
   };
-
-  const signInWithGoogle = () => {};
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
