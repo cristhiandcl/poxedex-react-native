@@ -1,17 +1,11 @@
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  signInWithPopup,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 import app from "../firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
@@ -133,10 +127,10 @@ const Login = () => {
           className="bg-green-500 p-2 rounded flex-row items-center justify-center space-x-2"
           onPress={signInWithGoogle}
         >
+          <Image source={require("../assets/google.png")} className="h-6 w-6" />
           <Text className="text-center font-bold text-white">
             Login with Google
           </Text>
-          <Image source={require("../assets/google.png")} className="h-6 w-6" />
         </TouchableOpacity>
         <TouchableOpacity
           className="bg-blue-500 p-2 rounded"
