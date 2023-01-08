@@ -1,11 +1,12 @@
 {
   "expo": {
-    "name": "poxedex-app",
-    "slug": "poxedex-app",
+    "name": "poxedex",
+    "slug": "poxedex",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "scheme":"com.cristhiandcl.pokedexapp",
+    "scheme": "com.cristhiandcl.pokedexapp",
+    "owner" : "thejokercompany",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -29,6 +30,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f363ed35-d35c-4161-8a3f-ed5e43bee8ff"
+      }
     }
   }
 }
