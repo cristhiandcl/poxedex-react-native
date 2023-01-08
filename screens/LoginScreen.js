@@ -36,20 +36,20 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const navigation = useNavigation();
 
+  // LogIn With Google
   useEffect(() => {
     if (response?.type === "success") {
       const { id_token } = response.params;
       const auth = getAuth();
       const credential = GoogleAuthProvider.credential(id_token);
-      console.log(id_token);
-      console.log(credential);
       signInWithCredential(auth, credential).then((result) => {
-        navigation.navigate("Home", { user: result.user.displayName });
+        navigation.navigate("Home", { user: result.user });
       });
       console.log("Done");
     }
   }, [response]);
 
+  // LogIn with Email and Password
   const logUser = () => {
     console.log(userData);
     signInWithEmailAndPassword(auth, userData.email, userData.password)
@@ -57,7 +57,8 @@ const Login = () => {
         // Signed in
         setErrorMessage("");
         const user = userCredential.user;
-        navigation.navigate("Home", { user: user.uid });
+        console.log(user);
+        navigation.navigate("Home", { user: user });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -67,6 +68,7 @@ const Login = () => {
       });
   };
 
+  // Create user with Email and Password
   const createUser = () => {
     console.log(userData);
 
@@ -75,8 +77,7 @@ const Login = () => {
         // Signed in
         setErrorMessage("");
         const user = userCredential.user;
-        console.log(user);
-        navigation.navigate("Home", { user: user.uid });
+        navigation.navigate("Home", { user });
       })
       .catch((error) => {
         const errorCode = error.code;
