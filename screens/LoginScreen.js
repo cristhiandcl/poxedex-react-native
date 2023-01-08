@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import {
   getAuth,
@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import app from "../firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
+// import google from "../assets/google.png";
 
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
@@ -122,12 +123,13 @@ const Login = () => {
           <Text className="text-center font-bold text-white">Login</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          className="bg-green-500 p-2 rounded"
+          className="bg-green-500 p-2 rounded flex-row items-center justify-center space-x-2"
           onPress={signInWithGoogle}
         >
           <Text className="text-center font-bold text-white">
             Login with Google
           </Text>
+          <Image source={require("../assets/google.png")} className="h-6 w-6" />
         </TouchableOpacity>
         <TouchableOpacity
           className="bg-blue-500 p-2 rounded"
