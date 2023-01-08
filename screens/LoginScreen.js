@@ -65,6 +65,8 @@ const Login = () => {
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
+        console.log(user);
+        navigation.navigate("Home");
         // ...
       })
       .catch((error) => {
@@ -118,6 +120,14 @@ const Login = () => {
           onPress={logUser}
         >
           <Text className="text-center font-bold text-white">Login</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          className="bg-green-500 p-2 rounded"
+          onPress={signInWithGoogle}
+        >
+          <Text className="text-center font-bold text-white">
+            Login with Google
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           className="bg-blue-500 p-2 rounded"
