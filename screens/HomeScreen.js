@@ -1,9 +1,17 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  SafeAreaView,
+} from "react-native";
 import React from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { ArrowLeftOnRectangleIcon } from "react-native-heroicons/solid";
 import app from "../firebaseConfig";
 import { getAuth, signOut } from "firebase/auth";
+import Pokemons from "../components/Pokemons";
 
 const auth = getAuth(app);
 
@@ -22,28 +30,30 @@ const HomeScreen = () => {
       })
       .catch((error) => {
         // An error happened.
-        console.log(error);
       });
   };
 
   return (
-    <View className="relative flex-1">
-      <View className="flex-1 items-center justify-center">
-        <TouchableOpacity
-          onPress={signOutButton}
-          className="absolute top-10 right-4"
-        >
-          <ArrowLeftOnRectangleIcon size={40} color="green" />
-        </TouchableOpacity>
-        <Text className="font-extrabold text-2xl p-2 text-center">
-          Home of {user?.displayName || user?.email.replace("@gmail.com", "")}
-        </Text>
-        <Image
-          source={{ uri: user?.photoURL }}
-          className="h-20 w-20 rounded-full"
-        />
-      </View>
-    </View>
+    <SafeAreaView className="relative">
+      <TouchableOpacity
+        onPress={signOutButton}
+        className="absolute top-10 right-4"
+      >
+        <ArrowLeftOnRectangleIcon size={40} color="green" />
+      </TouchableOpacity>
+      <ScrollView className="mt-8">
+        <View className="items-center space-y-4">
+          <Text className="font-extrabold text-2xl text-center">
+            Home of {user?.displayName || user?.email.replace("@gmail.com", "")}
+          </Text>
+          <Image
+            source={{ uri: user?.photoURL }}
+            className="h-32 w-32 rounded-full mb-4"
+          />
+          <Pokemons />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
