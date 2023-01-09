@@ -77,7 +77,19 @@ const Login = () => {
         // Signed in
         setErrorMessage("");
         const user = userCredential.user;
-        navigation.navigate("Home", { user });
+        // navigation.navigate("Home", { user });
+        Alert.alert("Alert Title", "My Alert Msg", [
+          {
+            text: "Ask me later",
+            onPress: () => console.log("Ask me later pressed"),
+          },
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel",
+          },
+          { text: "OK", onPress: () => console.log("OK Pressed") },
+        ]);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -106,7 +118,8 @@ const Login = () => {
               placeholder="Email"
               autoCapitalize="none"
             />
-            {errorMessage.includes("email") && (
+            {(errorMessage.includes("email") ||
+              errorMessage.includes("user-not-found")) && (
               <Text className="font-extrabold text-red-600 text-xs">
                 {errorMessage}
               </Text>
@@ -123,8 +136,7 @@ const Login = () => {
               placeholder="Password"
               secureTextEntry={true}
             />
-            {(errorMessage.includes("password") ||
-              errorMessage.includes("user-not-found")) && (
+            {errorMessage.includes("password") && (
               <Text className="font-extrabold text-red-600 text-xs">
                 {errorMessage}
               </Text>
