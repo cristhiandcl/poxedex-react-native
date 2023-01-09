@@ -8,7 +8,11 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import React, { useState } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import app from "../firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
 
@@ -32,10 +36,14 @@ const SignInScreen = () => {
         // Signed in
         setErrorMessage("");
         const user = userCredential.user;
-        //
-        Alert.alert("Sign In", "User Created Successfully", [
-          { text: "OK", onPress: () => navigation.navigate("Login") },
-        ]);
+        updateProfile(user, {
+          displayName: userData.name,
+        }).then(() => {
+          Alert.alert("Sign In", "User Created Successfully", [
+            { text: "OK", onPress: navigation.goBack },
+          ]);
+        });
+        console.log(user);
       })
       .catch((error) => {
         const errorCode = error.code;

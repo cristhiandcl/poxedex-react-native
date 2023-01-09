@@ -11,7 +11,6 @@ import {
 import React, { useEffect, useState } from "react";
 import {
   getAuth,
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithCredential,
@@ -143,7 +142,7 @@ const Login = () => {
             onPress={createUser}
           >
             <Text className="text-center font-bold text-white">
-              Create Account
+              Don't Have an Account ?
             </Text>
           </TouchableOpacity>
         </View>
