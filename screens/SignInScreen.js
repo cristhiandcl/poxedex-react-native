@@ -39,7 +39,7 @@ const SignInScreen = () => {
         updateProfile(user, {
           displayName: userData.name,
         }).then(() => {
-          Alert.alert("Sign In", "User Created Successfully", [
+          Alert.alert("Sign Out", "User Created Successfully", [
             { text: "OK", onPress: navigation.goBack },
           ]);
         });
@@ -47,8 +47,10 @@ const SignInScreen = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        setErrorMessage(
-          error.message.replace("Firebase: Error (auth/", "").replace(").", "")
+        Alert.alert(
+          "Sign Out",
+          error.message.replace("Firebase: Error (auth/", "").replace(").", ""),
+          [{ text: "OK" }]
         );
         console.log(error.message);
       });
