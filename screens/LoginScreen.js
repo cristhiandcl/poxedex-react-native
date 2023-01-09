@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   Keyboard,
+  Alert,
   TouchableWithoutFeedback,
 } from "react-native";
 import React, { useEffect, useState } from "react";
@@ -78,16 +79,7 @@ const Login = () => {
         setErrorMessage("");
         const user = userCredential.user;
         // navigation.navigate("Home", { user });
-        Alert.alert("Alert Title", "My Alert Msg", [
-          {
-            text: "Ask me later",
-            onPress: () => console.log("Ask me later pressed"),
-          },
-          {
-            text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel",
-          },
+        Alert.alert("Sign In", "User Created Successfully", [
           { text: "OK", onPress: () => console.log("OK Pressed") },
         ]);
       })
