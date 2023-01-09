@@ -3,76 +3,47 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Image,
   Keyboard,
   Alert,
   TouchableWithoutFeedback,
 } from "react-native";
-import React, { useEffect, useState } from "react";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithCredential,
-} from "firebase/auth";
+import React, { useState } from "react";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from "../firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
-import * as WebBrowser from "expo-web-browser";
-import * as Google from "expo-auth-session/providers/google";
-import { KEYS } from "../keys";
 
 const auth = getAuth(app);
-WebBrowser.maybeCompleteAuthSession();
 
-const Login = () => {
+const SignInScreen = () => {
   const [userData, onChangeText] = useState({
     email: "",
     password: "",
-  });
-  const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
-    expoClientId: KEYS.expoClientId,
+    name: "",
   });
 
   const [errorMessage, setErrorMessage] = useState("");
   const navigation = useNavigation();
 
-  // LogIn With Google
-  useEffect(() => {
-    if (response?.type === "success") {
-      const { id_token } = response.params;
-      const auth = getAuth();
-      const credential = GoogleAuthProvider.credential(id_token);
-      signInWithCredential(auth, credential).then((result) => {
-        navigation.navigate("Home", { user: result.user });
-      });
-      console.log("Done");
-    }
-  }, [response]);
-
-  // LogIn with Email and Password
-  const logUser = () => {
+  // Create user with Email and Password
+  const createUser = () => {
     console.log(userData);
-    signInWithEmailAndPassword(auth, userData.email, userData.password)
+    createUserWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {
         // Signed in
         setErrorMessage("");
         const user = userCredential.user;
-        console.log(user);
-        navigation.navigate("Home", { user: user });
+        //
+        Alert.alert("Sign In", "User Created Successfully", [
+          { text: "OK", onPress: () => navigation.navigate("Login") },
+        ]);
       })
       .catch((error) => {
         const errorCode = error.code;
         setErrorMessage(
           error.message.replace("Firebase: Error (auth/", "").replace(").", "")
         );
+        console.log(error.message);
       });
-  };
-
-  // Create user with Email and Password
-  const createUser = () => {
-    console.log(userData);
-    navigation.navigate("SignIn");
   };
 
   return (
@@ -82,6 +53,15 @@ const Login = () => {
         onPress={() => Keyboard.dismiss()}
       >
         <View className="w-2/3 space-y-6">
+          <View className="space-y-2">
+            <Text className="font-extrabold">Name</Text>
+            <TextInput
+              className="border-2 p-2"
+              value={userData.name}
+              onChangeText={(data) => onChangeText({ ...userData, name: data })}
+              placeholder="Name"
+            />
+          </View>
           <View className="space-y-2">
             <Text className="font-extrabold">E-mail</Text>
             <TextInput
@@ -118,27 +98,6 @@ const Login = () => {
             )}
           </View>
           <TouchableOpacity
-            className="bg-green-500 p-2 rounded"
-            onPress={logUser}
-          >
-            <Text className="text-center font-bold text-white">Login</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className="bg-green-500 p-2 rounded flex-row items-center justify-center space-x-2"
-            onPress={() => {
-              promptAsync();
-            }}
-            disabled={!request}
-          >
-            <Image
-              source={require("../assets/google.png")}
-              className="h-6 w-6"
-            />
-            <Text className="text-center font-bold text-white">
-              Login with Google
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
             className="bg-blue-500 p-2 rounded"
             onPress={createUser}
           >
@@ -146,10 +105,16 @@ const Login = () => {
               Create Account
             </Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            className="bg-green-500 p-2 rounded"
+            onPress={navigation.goBack}
+          >
+            <Text className="text-center font-bold text-white">Go Back</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </TouchableWithoutFeedback>
   );
 };
 
-export default Login;
+export default SignInScreen;
