@@ -52,7 +52,7 @@ const SignInScreen = () => {
         className="flex-1 items-center justify-center"
         onPress={() => Keyboard.dismiss()}
       >
-        <View className="w-2/3 space-y-6">
+        <View className="w-2/3 space-y-4">
           <View className="space-y-2">
             <Text className="font-extrabold">Name</Text>
             <TextInput
@@ -97,20 +97,22 @@ const SignInScreen = () => {
               </Text>
             )}
           </View>
-          <TouchableOpacity
-            className="bg-blue-500 p-2 rounded"
-            onPress={createUser}
-          >
-            <Text className="text-center font-bold text-white">
-              Create Account
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className="bg-green-500 p-2 rounded"
-            onPress={navigation.goBack}
-          >
-            <Text className="text-center font-bold text-white">Go Back</Text>
-          </TouchableOpacity>
+          <View className=" space-y-4 pt-4">
+            <TouchableOpacity
+              className="bg-blue-500 p-2 rounded"
+              onPress={createUser}
+            >
+              <Text className="text-center font-bold text-white">
+                Create Account
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              className="bg-green-500 p-2 rounded"
+              onPress={navigation.goBack}
+            >
+              <Text className="text-center font-bold text-white">Go Back</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </TouchableWithoutFeedback>
