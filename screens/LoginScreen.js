@@ -47,13 +47,11 @@ const Login = () => {
       signInWithCredential(auth, credential).then((result) => {
         navigation.navigate("Home");
       });
-      console.log("Done");
     }
   }, [response]);
 
   // LogIn with Email and Password
   const logUser = () => {
-    console.log(userData);
     signInWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {
         // Signed in
