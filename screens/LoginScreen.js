@@ -43,7 +43,7 @@ const Login = () => {
       // const auth = getAuth();
       const credential = GoogleAuthProvider.credential(id_token);
       signInWithCredential(auth, credential).then((result) => {
-        navigation.navigate("Home", { user: result.user });
+        navigation.navigate("Home");
       });
       console.log("Done");
     }

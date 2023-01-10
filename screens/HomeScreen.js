@@ -17,10 +17,8 @@ import Pokemons from "../components/Pokemons";
 const auth = getAuth(app);
 
 const HomeScreen = () => {
+  const user = auth.currentUser;
   const navigation = useNavigation();
-  const {
-    params: { user },
-  } = useRoute();
   console.log(user);
 
   const signOutButton = () => {
