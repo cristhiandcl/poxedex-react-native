@@ -40,7 +40,7 @@ const Login = () => {
   useEffect(() => {
     if (response?.type === "success") {
       const { id_token } = response.params;
-      const auth = getAuth();
+      // const auth = getAuth();
       const credential = GoogleAuthProvider.credential(id_token);
       signInWithCredential(auth, credential).then((result) => {
         navigation.navigate("Home", { user: result.user });
