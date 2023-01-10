@@ -5,4 +5,6 @@ export const KEYS = {
     "1095308608247-oonq59bouiq886ackp5oek06mjn9qdti.apps.googleusercontent.com",
   androidClientId:
     "1095308608247-oonq59bouiq886ackp5oek06mjn9qdti.apps.googleusercontent.com",
+  iosClientId:
+    "1095308608247-jf09ong00j6rkn6c6bo0jo2ao32c2sd1.apps.googleusercontent.com",
 };

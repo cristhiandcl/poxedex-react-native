@@ -32,6 +32,7 @@ const Login = () => {
   const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
     expoClientId: KEYS.expoClientId,
     androidClientId: KEYS.androidClientId,
+    iosClientId: KEYS.iosClientId,
   });
 
   const [errorMessage, setErrorMessage] = useState("");
