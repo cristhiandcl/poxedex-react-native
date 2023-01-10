@@ -1,4 +1,3 @@
-import { DefaultTheme } from "@react-navigation/native";
 import { initializeApp } from "firebase/app";
 
 // Initialize Firebase
