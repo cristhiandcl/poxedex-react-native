@@ -45,7 +45,7 @@ const HomeScreen = () => {
           <ArrowLeftOnRectangleIcon size={40} color="green" />
         </TouchableOpacity>
       )}
-      <ScrollView className="mt-8">
+      <ScrollView className="mt-8" showsVerticalScrollIndicator={false}>
         {Platform.OS === "android" && (
           <TouchableOpacity
             onPress={signOutButton}
