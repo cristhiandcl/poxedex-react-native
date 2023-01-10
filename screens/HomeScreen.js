@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  Platform,
   SafeAreaView,
 } from "react-native";
 import React from "react";
@@ -30,18 +31,31 @@ const HomeScreen = () => {
       })
       .catch((error) => {
         // An error happened.
+        console.log(error);
       });
   };
 
   return (
-    <SafeAreaView className="relative">
-      <TouchableOpacity
-        onPress={signOutButton}
-        className="absolute top-10 right-4"
-      >
-        <ArrowLeftOnRectangleIcon size={40} color="green" />
-      </TouchableOpacity>
+    <SafeAreaView
+      className={`relative ${Platform.OS === "android" && "mt-4"} py-4`}
+    >
+      {Platform.OS === "ios" && (
+        <TouchableOpacity
+          onPress={signOutButton}
+          className="absolute top-10 right-4"
+        >
+          <ArrowLeftOnRectangleIcon size={40} color="green" />
+        </TouchableOpacity>
+      )}
       <ScrollView className="mt-8">
+        {Platform.OS === "android" && (
+          <TouchableOpacity
+            onPress={signOutButton}
+            className="absolute top-10 right-4"
+          >
+            <ArrowLeftOnRectangleIcon size={40} color="green" />
+          </TouchableOpacity>
+        )}
         <View className="items-center space-y-4">
           <Text className="font-extrabold text-2xl text-center">
             Home of {user?.displayName || user?.email.replace("@gmail.com", "")}

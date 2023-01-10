@@ -95,12 +95,6 @@ const Login = () => {
               placeholder="Email"
               autoCapitalize="none"
             />
-            {/* {(errorMessage.includes("email") ||
-              errorMessage.includes("user-not-found")) && (
-              <Text className="font-extrabold text-red-600 text-xs">
-                {errorMessage}
-              </Text>
-            )} */}
           </View>
           <View className="space-y-2">
             <Text className="font-extrabold">Password</Text>
@@ -113,11 +107,6 @@ const Login = () => {
               placeholder="Password"
               secureTextEntry={true}
             />
-            {/* {errorMessage.includes("password") && (
-              <Text className="font-extrabold text-red-600 text-xs">
-                {errorMessage}
-              </Text>
-            )} */}
           </View>
           <TouchableOpacity
             className="bg-green-500 p-2 rounded"

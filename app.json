@@ -1,12 +1,14 @@
 {
   "expo": {
-    "name": "poxedex",
-    "slug": "poxedex",
+    "name": "pokedex",
+    "slug": "pokedex",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "com.cristhiandcl.pokedexapp",
-    "owner" : "thejokercompany",
+    "owner": "thejokercompany",
+    "originalFullName": "@thejokercompany/pokedex",
+    "currentFullName": "@thejokercompany/pokedex",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -14,27 +16,33 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/0c6bdeaf-5e49-411b-af10-bc21f7198c8c"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cristhiandcl.poxedex"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.cristhiandcl.poxedex"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "f363ed35-d35c-4161-8a3f-ed5e43bee8ff"
+        "projectId": "0c6bdeaf-5e49-411b-af10-bc21f7198c8c"
       }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }
