@@ -83,12 +83,6 @@ const SignInScreen = () => {
               placeholder="Email"
               autoCapitalize="none"
             />
-            {(errorMessage.includes("email") ||
-              errorMessage.includes("user-not-found")) && (
-              <Text className="font-extrabold text-red-600 text-xs">
-                {errorMessage}
-              </Text>
-            )}
           </View>
           <View className="space-y-2">
             <Text className="font-extrabold">Password</Text>
@@ -101,11 +95,6 @@ const SignInScreen = () => {
               placeholder="Password"
               secureTextEntry={true}
             />
-            {errorMessage.includes("password") && (
-              <Text className="font-extrabold text-red-600 text-xs">
-                {errorMessage}
-              </Text>
-            )}
           </View>
           <View className=" space-y-4 pt-4">
             <TouchableOpacity
