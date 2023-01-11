@@ -1,0 +1,34 @@
+{
+  "project_info": {
+    "project_number": "8939602846",
+    "project_id": "pokedex-firebase-b99e2",
+    "storage_bucket": "pokedex-firebase-b99e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8939602846:android:fb92a0ae4a194ed1824c8f",
+        "android_client_info": {
+          "package_name": "com.cristhiandcl.poxedex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYcxTfivIuLlAAoAJXSJB-RSMkBx36tsA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8939602846-p68pru6fb4skkbfgs5jv09bbsrpng5qr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
