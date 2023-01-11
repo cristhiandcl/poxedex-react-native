@@ -59,7 +59,7 @@ const Login = () => {
         const user = userCredential.user;
         console.log(user);
         onChangeText({ email: "", password: "" });
-        navigation.navigate("Home", { user: user });
+        navigation.navigate("Home");
       })
       .catch((error) => {
         const errorCode = error.code;
