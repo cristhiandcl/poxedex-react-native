@@ -11,7 +11,6 @@ const Pokemons = () => {
 
   useEffect(() => {
     client.get("?_limit=10").then((response) => {
-      console.log(response.data);
       setPokemons(response.data);
     });
   }, []);

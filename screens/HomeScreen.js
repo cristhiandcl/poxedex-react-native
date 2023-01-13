@@ -19,7 +19,6 @@ const auth = getAuth(app);
 const HomeScreen = () => {
   const user = auth.currentUser;
   const navigation = useNavigation();
-  console.log(user);
 
   const signOutButton = () => {
     signOut(auth)
@@ -29,7 +28,6 @@ const HomeScreen = () => {
       })
       .catch((error) => {
         // An error happened.
-        console.log(error);
       });
   };
 
