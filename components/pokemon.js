@@ -5,7 +5,7 @@ function Pokemon({ pokemon }) {
   return (
     <View className="items-center justify-center">
       <Image
-        className="bg-gray-200 h-[80] w-[80]"
+        className="h-[80] w-[80]"
         source={{
           uri: pokemon.sprites.other["official-artwork"].front_default,
         }}

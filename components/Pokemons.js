@@ -10,7 +10,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
-import Pokemon from "./pokemon";
+import Pokemon from "./Pokemon";
 import { useNavigation } from "@react-navigation/native";
 
 // const client = axios.create({
@@ -26,14 +26,13 @@ const Pokemons = () => {
     <TouchableOpacity
       key={pokemon.id}
       onPress={() => navigation.push("PokemonDetails", { pokemon })}
-      className=""
     >
       <Pokemon pokemon={pokemon} />
     </TouchableOpacity>
   ));
 
   return (
-    <View className="items-center px-4 flex-row border justify-center flex-wrap gap-8">
+    <View className="items-center p-4 flex-row justify-center flex-wrap gap-8">
       {renderPokemons}
     </View>
   );

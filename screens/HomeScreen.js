@@ -33,7 +33,9 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView
-      className={`relative ${Platform.OS === "android" && "mt-4"} py-4`}
+      className={`relative h-full ${
+        Platform.OS === "android" && "mt-4"
+      } py-4 space-y-7`}
     >
       {Platform.OS === "ios" ? (
         <TouchableOpacity
@@ -50,17 +52,18 @@ const HomeScreen = () => {
           <ArrowLeftOnRectangleIcon size={40} color="green" />
         </TouchableOpacity>
       )}
-      <ScrollView className="py-8" showsVerticalScrollIndicator={false}>
-        <Text className="font-extrabold text-2xl text-center">
-          Home of {user?.displayName || user?.email.replace("@gmail.com", "")}
+      <Text className="font-extrabold text-2xl text-center text-green-700">
+        Home of {user?.displayName || user?.email.replace("@gmail.com", "")}
+      </Text>
+      <Image
+        source={{ uri: user?.photoURL }}
+        className="h-20 w-20 rounded-full self-center"
+      />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text className="mb-4 text-2xl font-extrabold text-center text-green-700">
+          Pokemons
         </Text>
-        <Image
-          source={{ uri: user?.photoURL }}
-          className="h-20 w-20 rounded-full"
-        />
-        {/* <View className="items-center space-y-4"> */}
         <Pokemons />
-        {/* </View> */}
       </ScrollView>
     </SafeAreaView>
   );

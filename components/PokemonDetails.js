@@ -3,7 +3,7 @@ import React from "react";
 
 const PokemonDetails = ({ pokemon }) => {
   return (
-    <View>
+    <View className="h-full items-center justify-center">
       <Image
         source={{
           uri: pokemon.sprites.other["official-artwork"].front_default,
