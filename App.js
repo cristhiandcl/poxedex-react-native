@@ -6,15 +6,16 @@ import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignInScreen from "./screens/SignInScreen";
 import { store } from "./store";
-import { Provider, useDispatch } from "react-redux";
-import { setPokemons } from "./slices/pokemonsSlice";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { getPokemons, setPokemons } from "./slices/pokemonsSlice";
 
 const client = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
 
-export default function App() {
+function App() {
   const Stack = createNativeStackNavigator();
-  const [pokemons, setPokemons] = useState([]);
-  // const dispatch = useDispatch();
+  // const [pokemons, setPokemons] = useState([]);
+  const dispatch = useDispatch();
+  const pokemons = useSelector(getPokemons);
 
   useEffect(() => {
     let tempPokemons = [];
@@ -23,33 +24,43 @@ export default function App() {
         const response = await client.get(`pokemon/${i}`);
         tempPokemons.push(response.data);
       }
-      setPokemons([...tempPokemons]);
-      // dispatch(setPokemons(tempPokemons));
+      // setPokemons([...tempPokemons]);
+      dispatch(setPokemons(tempPokemons));
     }
     getPokemons();
   }, []);
 
+  console.log(pokemons);
+
   return (
     <NavigationContainer>
-      <Provider store={store}>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="Login"
-            component={LoginScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{ headerShown: false, gestureEnabled: false }}
-          />
-          <Stack.Screen
-            name="SignIn"
-            component={SignInScreen}
-            options={{ headerShown: false }}
-          />
-        </Stack.Navigator>
-      </Provider>
+      {/* <Provider store={store}> */}
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false, gestureEnabled: false }}
+        />
+        <Stack.Screen
+          name="SignIn"
+          component={SignInScreen}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+      {/* </Provider> */}
     </NavigationContainer>
+  );
+}
+
+export default function AppWrapper() {
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
   );
 }

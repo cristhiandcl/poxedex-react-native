@@ -17,6 +17,6 @@ export const pokemonsSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { setPokemons } = pokemonsSlice.actions;
 
-export const getPokemons = (state) => state.pokemons;
+export const getPokemons = (state) => state.pokemons.value;
 
 export default pokemonsSlice.reducer;
