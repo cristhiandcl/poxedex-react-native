@@ -84,6 +84,13 @@ const Login = () => {
         className="flex-1 items-center justify-center"
         onPress={() => Keyboard.dismiss()}
       >
+        <Text className="text-4xl text-center text-green-700 font-extrabold mb-2">
+          Welcome to the POKEDEX
+        </Text>
+        <Text className="w-3/4 text-center text-gray-400 font-extrabold text-xs mb-14 opacity-50">
+          Login if you already have an account or create one to get access to
+          your poxedex
+        </Text>
         <View className="w-2/3 space-y-6">
           <View className="space-y-2">
             <Text className="font-extrabold">E-mail</Text>
