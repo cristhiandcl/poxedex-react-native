@@ -11,11 +11,12 @@ import { getPokemons, setPokemons } from "./slices/pokemonsSlice";
 
 const client = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
 
-function App() {
+function AppWrapper() {
   const Stack = createNativeStackNavigator();
   // const [pokemons, setPokemons] = useState([]);
   const dispatch = useDispatch();
   const pokemons = useSelector(getPokemons);
+  // const pokemons = useSelector((state) => state.pokemons.value);
 
   useEffect(() => {
     let tempPokemons = [];
@@ -57,10 +58,10 @@ function App() {
   );
 }
 
-export default function AppWrapper() {
+export default function App() {
   return (
     <Provider store={store}>
-      <App />
+      <AppWrapper />
     </Provider>
   );
 }
