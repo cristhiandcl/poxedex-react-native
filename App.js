@@ -5,12 +5,16 @@ import { useEffect, useState } from "react";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignInScreen from "./screens/SignInScreen";
+import { store } from "./store";
+import { Provider, useDispatch } from "react-redux";
+import { setPokemons } from "./slices/pokemonsSlice";
 
 const client = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   const [pokemons, setPokemons] = useState([]);
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     let tempPokemons = [];
@@ -20,29 +24,32 @@ export default function App() {
         tempPokemons.push(response.data);
       }
       setPokemons([...tempPokemons]);
+      // dispatch(setPokemons(tempPokemons));
     }
     getPokemons();
   }, []);
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{ headerShown: false, gestureEnabled: false }}
-        />
-        <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
+      <Provider store={store}>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{ headerShown: false, gestureEnabled: false }}
+          />
+          <Stack.Screen
+            name="SignIn"
+            component={SignInScreen}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </Provider>
     </NavigationContainer>
   );
 }

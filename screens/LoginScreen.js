@@ -25,6 +25,7 @@ const auth = getAuth(app);
 WebBrowser.maybeCompleteAuthSession();
 
 const Login = () => {
+  useEffect(() => {}, []);
   const [userData, onChangeText] = useState({
     email: "",
     password: "",
