@@ -56,7 +56,11 @@ const HomeScreen = () => {
         Home of {user?.displayName || user?.email.replace("@gmail.com", "")}
       </Text>
       <Image
-        source={{ uri: user?.photoURL }}
+        source={
+          user?.photoURL
+            ? { uri: user?.photoURL }
+            : require("../assets/user.png")
+        }
         className="h-20 w-20 rounded-full self-center"
       />
       <ScrollView showsVerticalScrollIndicator={false}>

@@ -17,7 +17,6 @@ function AppWrapper() {
 
   const dispatch = useDispatch();
   const pokemons = useSelector(getPokemons);
-  // const pokemons = useSelector((state) => state.pokemons.value);
 
   useEffect(() => {
     let tempPokemons = [];
