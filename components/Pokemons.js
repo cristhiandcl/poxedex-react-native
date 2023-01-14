@@ -13,9 +13,9 @@ import { getPokemons } from "../slices/pokemonsSlice";
 import Pokemon from "./pokemon";
 import { useNavigation } from "@react-navigation/native";
 
-const client = axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com/photos",
-});
+// const client = axios.create({
+//   baseURL: "",
+// });
 
 const Pokemons = () => {
   const pokemons = useSelector(getPokemons);
@@ -26,18 +26,15 @@ const Pokemons = () => {
     <TouchableOpacity
       key={pokemon.id}
       onPress={() => navigation.push("PokemonDetails", { pokemon })}
-      className="border-2 p-2 border-green-900 rounded-full"
+      className=""
     >
       <Pokemon pokemon={pokemon} />
     </TouchableOpacity>
   ));
 
   return (
-    <View className="w-2/3 space-y-8">
-      <Text className="text-center font-extrabold text-2xl text-green-800">
-        Pokemons
-      </Text>
-      <View className="items-center space-y-6">{renderPokemons}</View>
+    <View className="items-center px-4 flex-row border justify-center flex-wrap gap-8">
+      {renderPokemons}
     </View>
   );
 };

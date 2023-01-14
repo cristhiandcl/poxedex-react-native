@@ -1,10 +1,15 @@
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import React from "react";
 
-const PokemonDetails = () => {
+const PokemonDetails = ({ pokemon }) => {
   return (
     <View>
-      <Text>PokemonDetails</Text>
+      <Image
+        source={{
+          uri: pokemon.sprites.other["official-artwork"].front_default,
+        }}
+        className="w-80 h-80"
+      />
     </View>
   );
 };
