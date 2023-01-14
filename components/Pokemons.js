@@ -1,8 +1,16 @@
-import { View, Text, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
+import Pokemon from "./pokemon";
 
 const client = axios.create({
   baseURL: "https://jsonplaceholder.typicode.com/photos",
@@ -10,25 +18,24 @@ const client = axios.create({
 
 const Pokemons = () => {
   const pokemons = useSelector(getPokemons);
-  console.log(pokemons);
+  // console.log(pokemons);
+
+  const renderPokemons = pokemons.map((pokemon) => (
+    <TouchableOpacity
+      key={pokemon.id}
+      onPress={() => console.log(pokemon.name)}
+      className="border p-2 border-green-900 rounded-full"
+    >
+      <Pokemon pokemon={pokemon} />
+    </TouchableOpacity>
+  ));
 
   return (
     <View className="w-2/3 space-y-8">
       <Text className="text-center font-extrabold text-2xl text-green-800">
         Pokemons
       </Text>
-      {pokemons?.map((pokemon) => (
-        <View
-          key={pokemon.id}
-          className="items-center space-y-2 border p-2 rounded"
-        >
-          <Text className="text-center">{pokemon.title}</Text>
-          <Image
-            source={{ uri: pokemon.url }}
-            className="h-20 w-20 rounded-full"
-          />
-        </View>
-      ))}
+      <View className="items-center space-y-6">{renderPokemons}</View>
     </View>
   );
 };
