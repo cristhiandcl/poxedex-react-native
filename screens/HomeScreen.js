@@ -38,12 +38,19 @@ const HomeScreen = () => {
       } py-4 space-y-7`}
     >
       {Platform.OS === "ios" ? (
-        <TouchableOpacity
-          onPress={signOutButton}
-          className="absolute top-10 right-4"
-        >
-          <ArrowLeftOnRectangleIcon size={40} color="green" />
-        </TouchableOpacity>
+        <View className="absolute flex-row top-14 mx-4">
+          <TouchableOpacity onPress={signOutButton} className="flex-1">
+            <ArrowLeftOnRectangleIcon size={40} color="green" />
+          </TouchableOpacity>
+          <Image
+            source={
+              user?.photoURL
+                ? { uri: user?.photoURL }
+                : require("../assets/user.png")
+            }
+            className="h-10 w-10 rounded-full self-center"
+          />
+        </View>
       ) : (
         <TouchableOpacity
           onPress={signOutButton}
@@ -52,17 +59,13 @@ const HomeScreen = () => {
           <ArrowLeftOnRectangleIcon size={40} color="green" />
         </TouchableOpacity>
       )}
-      <Text className="font-extrabold text-2xl text-center text-green-700">
-        Home of {user?.displayName || user?.email.replace("@gmail.com", "")}
+      <Text className="font-extrabold text-xs text-center pt-12 text-green-700 mx-8">
+        {/* Home of {user?.displayName || user?.email.replace("@gmail.com", "")} */}
+        Welcome {user?.displayName || user?.email.replace("@gmail.com", "")}{" "}
+        !!!, nice to have you on board, here you're going to find stats about
+        every pokemon you can think of, so feel free to add your favorite
+        pokemons to your personal space, and create your own poxedex
       </Text>
-      <Image
-        source={
-          user?.photoURL
-            ? { uri: user?.photoURL }
-            : require("../assets/user.png")
-        }
-        className="h-20 w-20 rounded-full self-center"
-      />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text className="mb-4 text-2xl font-extrabold text-center text-green-700">
           Pokemons
