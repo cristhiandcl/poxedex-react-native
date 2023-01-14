@@ -1,19 +1,16 @@
 import { View, Text, Image, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { getPokemons } from "../slices/pokemonsSlice";
 
 const client = axios.create({
   baseURL: "https://jsonplaceholder.typicode.com/photos",
 });
 
 const Pokemons = () => {
-  const [pokemons, setPokemons] = useState([]);
-
-  useEffect(() => {
-    client.get("?_limit=10").then((response) => {
-      setPokemons(response.data);
-    });
-  }, []);
+  const pokemons = useSelector(getPokemons);
+  console.log(pokemons);
 
   return (
     <View className="w-2/3 space-y-8">

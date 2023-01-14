@@ -13,7 +13,7 @@ const client = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
 
 function AppWrapper() {
   const Stack = createNativeStackNavigator();
-  // const [pokemons, setPokemons] = useState([]);
+
   const dispatch = useDispatch();
   const pokemons = useSelector(getPokemons);
   // const pokemons = useSelector((state) => state.pokemons.value);
@@ -25,13 +25,10 @@ function AppWrapper() {
         const response = await client.get(`pokemon/${i}`);
         tempPokemons.push(response.data);
       }
-      // setPokemons([...tempPokemons]);
       dispatch(setPokemons(tempPokemons));
     }
     getPokemons();
   }, []);
-
-  console.log(pokemons);
 
   return (
     <NavigationContainer>
