@@ -9,7 +9,7 @@ export const pokemonsSlice = createSlice({
   initialState,
   reducers: {
     setPokemons: (state, action) => {
-      state.value = [...action.payload];
+      state.pokemons = [...action.payload];
     },
   },
 });
@@ -17,6 +17,6 @@ export const pokemonsSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { setPokemons, filterPokemon } = pokemonsSlice.actions;
 
-export const getPokemons = (state) => state.pokemons.value;
+export const getPokemons = (state) => state.pokemons.pokemons;
 
 export default pokemonsSlice.reducer;

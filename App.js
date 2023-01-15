@@ -18,11 +18,12 @@ function AppWrapper() {
 
   const dispatch = useDispatch();
   const pokemons = useSelector(getPokemons);
+  console.log(pokemons);
 
   useEffect(() => {
     let tempPokemons = [];
     (async () => {
-      for (let i = 1; i <= 20; i++) {
+      for (let i = 1; i <= 200; i++) {
         const response = await client.get(`pokemon/${i}`);
         tempPokemons.push(response.data);
       }
