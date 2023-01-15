@@ -10,6 +10,7 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import { getPokemons, setPokemons } from "./slices/pokemonsSlice";
 import PokemonDetailsScreen from "./screens/PokemonDetailsScreen";
 import MySpaceScreen from "./screens/MySpaceScreen";
+import { pokemonsData } from "./pokemonsData";
 
 const client = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
 
@@ -18,17 +19,17 @@ function AppWrapper() {
 
   const dispatch = useDispatch();
   const pokemons = useSelector(getPokemons);
-  console.log(pokemons);
+  // console.log(pokemons);
 
   useEffect(() => {
-    let tempPokemons = [];
-    (async () => {
-      for (let i = 1; i <= 200; i++) {
-        const response = await client.get(`pokemon/${i}`);
-        tempPokemons.push(response.data);
-      }
-      dispatch(setPokemons(tempPokemons));
-    })();
+    // let tempPokemons = [];
+    // (async () => {
+    //   for (let i = 1; i <= 200; i++) {
+    //     const response = await client.get(`pokemon/${i}`);
+    //     // tempPokemons.push(response.data);
+    dispatch(setPokemons(pokemonsData));
+    //   }
+    // })();
   }, []);
 
   return (
