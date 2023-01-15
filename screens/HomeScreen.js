@@ -42,14 +42,16 @@ const HomeScreen = () => {
           <TouchableOpacity onPress={signOutButton} className="flex-1">
             <ArrowLeftOnRectangleIcon size={40} color="green" />
           </TouchableOpacity>
-          <Image
-            source={
-              user?.photoURL
-                ? { uri: user?.photoURL }
-                : require("../assets/user.png")
-            }
-            className="h-10 w-10 rounded-full self-center"
-          />
+          <TouchableOpacity onPress={() => navigation.navigate("MySpace")}>
+            <Image
+              source={
+                user?.photoURL
+                  ? { uri: user?.photoURL }
+                  : require("../assets/user.png")
+              }
+              className="h-10 w-10 rounded-full self-center"
+            />
+          </TouchableOpacity>
         </View>
       ) : (
         <TouchableOpacity
@@ -61,7 +63,10 @@ const HomeScreen = () => {
       )}
       <Text className="font-extrabold text-xs text-center pt-12 text-green-700 mx-8">
         {/* Home of {user?.displayName || user?.email.replace("@gmail.com", "")} */}
-        Welcome {user?.displayName || user?.email.replace("@gmail.com", "")}{" "}
+        Welcome{" "}
+        <Text className="text-xl">
+          {user?.displayName || user?.email.replace("@gmail.com", "")}
+        </Text>{" "}
         !!!, nice to have you on board, here you're going to find stats about
         every pokemon you can think of, so feel free to add your favorite
         pokemons to your personal space, and create your own poxedex

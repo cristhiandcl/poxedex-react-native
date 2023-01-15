@@ -9,6 +9,7 @@ import { store } from "./store";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { getPokemons, setPokemons } from "./slices/pokemonsSlice";
 import PokemonDetailsScreen from "./screens/PokemonDetailsScreen";
+import MySpaceScreen from "./screens/MySpaceScreen";
 
 const client = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
 
@@ -32,7 +33,6 @@ function AppWrapper() {
 
   return (
     <NavigationContainer>
-      {/* <Provider store={store}> */}
       <Stack.Navigator>
         <Stack.Screen
           name="Login"
@@ -54,8 +54,12 @@ function AppWrapper() {
           component={PokemonDetailsScreen}
           options={{ headerShown: false, presentation: "modal" }}
         />
+        <Stack.Screen
+          name="MySpace"
+          component={MySpaceScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
-      {/* </Provider> */}
     </NavigationContainer>
   );
 }
