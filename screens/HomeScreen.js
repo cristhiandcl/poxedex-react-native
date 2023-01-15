@@ -7,6 +7,7 @@ import {
   Platform,
   SafeAreaView,
 } from "react-native";
+import * as Animatable from "react-native-animatable";
 import React from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { ArrowLeftOnRectangleIcon } from "react-native-heroicons/solid";
@@ -61,16 +62,19 @@ const HomeScreen = () => {
           <ArrowLeftOnRectangleIcon size={40} color="green" />
         </TouchableOpacity>
       )}
-      <Text className="font-extrabold text-xs text-center pt-12 text-green-700 mx-8">
-        {/* Home of {user?.displayName || user?.email.replace("@gmail.com", "")} */}
+      <Animatable.Text
+        animation="bounceInUp"
+        className="font-extrabold text-xs text-center pt-12 text-gray-400 mx-8"
+      >
         Welcome{" "}
-        <Text className="text-xl">
+        <Text className="text-sm text-green-700">
           {user?.displayName || user?.email.replace("@gmail.com", "")}
         </Text>{" "}
         !!!, nice to have you on board, here you're going to find stats about
-        every pokemon you can think of, so feel free to add your favorite
-        pokemons to your personal space, and create your own poxedex
-      </Text>
+        every pokemon you can think of, so feel free to navigate, add your
+        favorite pokemons to your personal space, and create your own{" "}
+        <Text className="text-red-700 text-sm">poxedex</Text>
+      </Animatable.Text>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text className="mb-4 text-2xl font-extrabold text-center text-green-700">
           Pokemons
