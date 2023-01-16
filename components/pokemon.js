@@ -1,19 +1,23 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity } from "react-native";
+import { useSelector } from "react-redux";
+import { getPokemons } from "../slices/pokemonsSlice";
+import Pokemons from "./Pokemons";
 // import FastImage from "react-native-fast-image";
 
 function Pokemon({ pokemon }) {
   const navigation = useNavigation();
+  const pokemons = useSelector(getPokemons);
   return (
     <TouchableOpacity
-      key={pokemon.id}
+      // key={pokemon.id}
       onPress={() => navigation.push("PokemonDetails", { pokemon })}
       className="items-center justify-center"
     >
       {/* <View > */}
       <Image
-        className="h-[80] w-[80]"
+        className={pokemons.length > 1 ? "h-[80] w-[80]" : "h-[220] w-[220]"}
         source={{
           uri: pokemon?.sprites.other["official-artwork"].front_default,
           // priority: FastImage.priority.high,

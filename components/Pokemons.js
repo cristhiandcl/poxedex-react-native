@@ -21,13 +21,22 @@ const Pokemons = () => {
   const pokemons = useSelector(getPokemons);
   // console.log(pokemons)
 
-  const renderPokemons = pokemons?.map((pokemon) => (
-    <Pokemon pokemon={pokemon} />
-  ));
+  // const renderPokemons = pokemons?.map((pokemon) => (
+  //   <Pokemon pokemon={pokemon} key={pokemon.id} />
+  // ));
 
   return (
-    <View className="items-center justify-between px-4 flex-row flex-wrap">
-      {renderPokemons}
+    <View
+      className={
+        pokemons.length > 1
+          ? "items-center justify-between px-4 flex-row flex-wrap"
+          : pokemons?.length <= 1 &&
+            "flex-col items-center justify-center mt-20"
+      }
+    >
+      {pokemons?.map((pokemon) => (
+        <Pokemon pokemon={pokemon} key={pokemon.id} />
+      ))}
     </View>
   );
 };

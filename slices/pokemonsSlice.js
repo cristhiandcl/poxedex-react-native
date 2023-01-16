@@ -11,6 +11,12 @@ export const pokemonsSlice = createSlice({
     setPokemons: (state, action) => {
       state.pokemons = [...action.payload];
     },
+    filterPokemon: (state, action) => {
+      const temp = state.pokemons.filter(
+        (pokemon) => pokemon.name === action.payload.toLowerCase()
+      );
+      state.pokemons = [...temp];
+    },
   },
 });
 

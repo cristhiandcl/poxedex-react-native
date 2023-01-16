@@ -20,21 +20,27 @@ import {
 import app from "../firebaseConfig";
 import { getAuth, signOut } from "firebase/auth";
 import Pokemons from "../components/Pokemons";
-import { useSelector } from "react-redux";
-import { getPokemons } from "../slices/pokemonsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  filterPokemon,
+  getPokemons,
+  setPokemons,
+} from "../slices/pokemonsSlice";
 import { debounce } from "lodash";
+import { pokemonsData } from "../pokemonsData";
 
 const auth = getAuth(app);
 
 const HomeScreen = () => {
   const user = auth.currentUser;
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const [isTouched, setIsTouched] = useState(false);
   const [pokemonName, onChangeText] = useState("");
 
-  const [pokemons, setPokemons] = useState(useSelector(getPokemons));
-  const backUp = useSelector(getPokemons);
+  const pokemons = useSelector(getPokemons);
+  // const backUp = useSelector(getPokemons);
 
   const signOutButton = () => {
     signOut(auth)
@@ -48,14 +54,12 @@ const HomeScreen = () => {
   };
 
   const clearFilter = () => {
-    setPokemons([...backUp]);
     onChangeText("");
+    dispatch(setPokemons(pokemonsData.slice(0, 40)));
   };
 
-  const filterPokemon = () => {
-    // setPokemons(
-    //   pokemons.filter((pokemon) => pokemon.name === pokemonName.toLowerCase())
-    // );
+  const filterPokemons = () => {
+    dispatch(filterPokemon(pokemonName));
     console.log(pokemonName);
   };
 
@@ -131,7 +135,7 @@ const HomeScreen = () => {
             value={pokemonName}
             onChangeText={onChange}
           />
-          <TouchableOpacity onPress={filterPokemon}>
+          <TouchableOpacity onPress={filterPokemons}>
             <MagnifyingGlassCircleIcon size={40} color="green" />
           </TouchableOpacity>
         </Animatable.View>
@@ -139,7 +143,7 @@ const HomeScreen = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <Pokemons pokemons={pokemons} />
         </ScrollView>
-        {pokemons.length <= 1 && (
+        {pokemons.length <= 10 && (
           <Animatable.View animation="fadeInDownBig" className="mb-12">
             <TouchableOpacity
               className="w-1/4 rounded-full p-2 self-center bg-green-700"
