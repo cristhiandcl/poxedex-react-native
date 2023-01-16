@@ -2,26 +2,25 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
   ScrollView,
   Platform,
   SafeAreaView,
-  TextInput,
   TouchableWithoutFeedback,
   Keyboard,
+  Image,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import React, { useState } from "react";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { ArrowLeftOnRectangleIcon } from "react-native-heroicons/solid";
 import app from "../firebaseConfig";
 import { getAuth, signOut } from "firebase/auth";
 import Pokemons from "../components/Pokemons";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
-import { debounce } from "lodash";
 import Input from "../components/Input";
 import ClearSearch from "../components/ClearSearch";
+// import FastImage from "react-native-fast-image";
 
 const auth = getAuth(app);
 

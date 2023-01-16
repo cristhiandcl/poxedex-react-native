@@ -3,8 +3,6 @@ import React from "react";
 import { Image, Text, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
-import Pokemons from "./Pokemons";
-// import FastImage from "react-native-fast-image";
 
 function Pokemon({ pokemon }) {
   const navigation = useNavigation();
