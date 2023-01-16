@@ -18,7 +18,6 @@ function AppWrapper() {
   const Stack = createNativeStackNavigator();
 
   const dispatch = useDispatch();
-  const pokemons = useSelector(getPokemons);
   // console.log(pokemons);
 
   useEffect(() => {
