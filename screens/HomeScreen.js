@@ -11,24 +11,17 @@ import {
   Keyboard,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
-import {
-  ArrowLeftOnRectangleIcon,
-  MagnifyingGlassCircleIcon,
-} from "react-native-heroicons/solid";
+import { ArrowLeftOnRectangleIcon } from "react-native-heroicons/solid";
 import app from "../firebaseConfig";
 import { getAuth, signOut } from "firebase/auth";
 import Pokemons from "../components/Pokemons";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  filterPokemon,
-  getPokemons,
-  setPokemons,
-} from "../slices/pokemonsSlice";
+import { getPokemons } from "../slices/pokemonsSlice";
 import { debounce } from "lodash";
-import { pokemonsData } from "../pokemonsData";
 import Input from "../components/Input";
+import ClearSearch from "../components/ClearSearch";
 
 const auth = getAuth(app);
 
@@ -51,10 +44,6 @@ const HomeScreen = () => {
       .catch((error) => {
         // An error happened.
       });
-  };
-
-  const clearFilter = () => {
-    dispatch(setPokemons(pokemonsData.slice(0, 40)));
   };
 
   // const changeTextDebouncer = debounce(onChange, 600);
@@ -103,34 +92,13 @@ const HomeScreen = () => {
           favorite pokemons to your personal space, and create your own{" "}
           <Text className="text-red-700 text-sm">poxedex</Text>
         </Animatable.Text>
-        {/* {!isTouched ? (
-          <TouchableOpacity
-            onPress={() => {
-              setIsTouched(true);
-            }}
-            className="mx-3"
-          >
-            <MagnifyingGlassCircleIcon size={40} color="green" />
-          </TouchableOpacity>
-        ) : ( */}
         <View>
           <Input />
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Pokemons pokemons={pokemons} />
         </ScrollView>
-        {pokemons.length <= 1 && (
-          <Animatable.View animation="fadeInDownBig" className="mb-12">
-            <TouchableOpacity
-              className="w-1/4 rounded-full p-2 self-center bg-green-700"
-              onPress={clearFilter}
-            >
-              <Text className="text-center text-xs font-extrabold text-white">
-                Clear Filter
-              </Text>
-            </TouchableOpacity>
-          </Animatable.View>
-        )}
+        <ClearSearch />
       </SafeAreaView>
     </TouchableWithoutFeedback>
   );

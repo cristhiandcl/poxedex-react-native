@@ -27,7 +27,7 @@ function AppWrapper() {
     //     const response = await client.get(`pokemon/${i}`);
     //     tempPokemons.push(response.data);
     //   }
-    dispatch(setPokemons(pokemonsData.slice(0, 40)));
+    dispatch(setPokemons(pokemonsData));
     // })();
   }, []);
 
