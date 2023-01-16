@@ -17,22 +17,16 @@ import { useNavigation } from "@react-navigation/native";
 //   baseURL: "",
 // });
 
-const Pokemons = ({ pokemons }) => {
-  // const pokemons = useSelector(getPokemons);
-  // console.log(pokemons);
-  const navigation = useNavigation();
+const Pokemons = () => {
+  const pokemons = useSelector(getPokemons);
+  // console.log(pokemons)
 
   const renderPokemons = pokemons?.map((pokemon) => (
-    <TouchableOpacity
-      key={pokemon.id}
-      onPress={() => navigation.push("PokemonDetails", { pokemon })}
-    >
-      <Pokemon pokemon={pokemon} />
-    </TouchableOpacity>
+    <Pokemon pokemon={pokemon} />
   ));
 
   return (
-    <View className="items-center p-4 flex-row justify-center flex-wrap gap-8">
+    <View className="items-center justify-between px-4 flex-row flex-wrap">
       {renderPokemons}
     </View>
   );

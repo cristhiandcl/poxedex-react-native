@@ -11,7 +11,7 @@ import {
   Keyboard,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   ArrowLeftOnRectangleIcon,
@@ -22,6 +22,7 @@ import { getAuth, signOut } from "firebase/auth";
 import Pokemons from "../components/Pokemons";
 import { useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
+import { debounce } from "lodash";
 
 const auth = getAuth(app);
 
@@ -50,6 +51,24 @@ const HomeScreen = () => {
     setPokemons([...backUp]);
     onChangeText("");
   };
+
+  const filterPokemon = () => {
+    // setPokemons(
+    //   pokemons.filter((pokemon) => pokemon.name === pokemonName.toLowerCase())
+    // );
+    console.log(pokemonName);
+  };
+
+  // const changeTextDebounced = (text) => {
+  //   // onChangeText(text);
+  //   console.log(text);
+  // };
+  const onChange = (value) => {
+    onChangeText(value);
+    // console.log(value);
+  };
+
+  // const changeTextDebouncer = debounce(onChange, 600);
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -95,7 +114,7 @@ const HomeScreen = () => {
           favorite pokemons to your personal space, and create your own{" "}
           <Text className="text-red-700 text-sm">poxedex</Text>
         </Animatable.Text>
-        {!isTouched ? (
+        {/* {!isTouched ? (
           <TouchableOpacity
             onPress={() => {
               setIsTouched(true);
@@ -104,27 +123,19 @@ const HomeScreen = () => {
           >
             <MagnifyingGlassCircleIcon size={40} color="green" />
           </TouchableOpacity>
-        ) : (
-          <Animatable.View animation="slideInLeft" className="flex-row mx-4">
-            <TextInput
-              className="border-rounded flex-1"
-              placeholder="Type down any Pokemon's name"
-              value={pokemonName}
-              onChangeText={(data) => onChangeText(data)}
-            />
-            <TouchableOpacity
-              onPress={() =>
-                setPokemons(
-                  pokemons.filter(
-                    (pokemon) => pokemon.name === pokemonName.toLowerCase()
-                  )
-                )
-              }
-            >
-              <MagnifyingGlassCircleIcon size={40} color="green" />
-            </TouchableOpacity>
-          </Animatable.View>
-        )}
+        ) : ( */}
+        <Animatable.View animation="slideInLeft" className="flex-row mx-4">
+          <TextInput
+            className="border-rounded flex-1"
+            placeholder="Type down any Pokemon's name"
+            value={pokemonName}
+            onChangeText={onChange}
+          />
+          <TouchableOpacity onPress={filterPokemon}>
+            <MagnifyingGlassCircleIcon size={40} color="green" />
+          </TouchableOpacity>
+        </Animatable.View>
+        {/* )} */}
         <ScrollView showsVerticalScrollIndicator={false}>
           <Pokemons pokemons={pokemons} />
         </ScrollView>
