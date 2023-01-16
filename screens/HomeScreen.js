@@ -28,6 +28,7 @@ import {
 } from "../slices/pokemonsSlice";
 import { debounce } from "lodash";
 import { pokemonsData } from "../pokemonsData";
+import Input from "../components/Input";
 
 const auth = getAuth(app);
 
@@ -37,7 +38,6 @@ const HomeScreen = () => {
   const dispatch = useDispatch();
 
   const [isTouched, setIsTouched] = useState(false);
-  const [pokemonName, onChangeText] = useState("");
 
   const pokemons = useSelector(getPokemons);
   // const backUp = useSelector(getPokemons);
@@ -54,22 +54,7 @@ const HomeScreen = () => {
   };
 
   const clearFilter = () => {
-    onChangeText("");
     dispatch(setPokemons(pokemonsData.slice(0, 40)));
-  };
-
-  const filterPokemons = () => {
-    dispatch(filterPokemon(pokemonName));
-    console.log(pokemonName);
-  };
-
-  // const changeTextDebounced = (text) => {
-  //   // onChangeText(text);
-  //   console.log(text);
-  // };
-  const onChange = (value) => {
-    onChangeText(value);
-    // console.log(value);
   };
 
   // const changeTextDebouncer = debounce(onChange, 600);
@@ -128,22 +113,13 @@ const HomeScreen = () => {
             <MagnifyingGlassCircleIcon size={40} color="green" />
           </TouchableOpacity>
         ) : ( */}
-        <Animatable.View animation="slideInLeft" className="flex-row mx-4">
-          <TextInput
-            className="border-rounded flex-1"
-            placeholder="Type down any Pokemon's name"
-            value={pokemonName}
-            onChangeText={onChange}
-          />
-          <TouchableOpacity onPress={filterPokemons}>
-            <MagnifyingGlassCircleIcon size={40} color="green" />
-          </TouchableOpacity>
-        </Animatable.View>
-        {/* )} */}
+        <View>
+          <Input />
+        </View>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Pokemons pokemons={pokemons} />
         </ScrollView>
-        {pokemons.length <= 10 && (
+        {pokemons.length <= 1 && (
           <Animatable.View animation="fadeInDownBig" className="mb-12">
             <TouchableOpacity
               className="w-1/4 rounded-full p-2 self-center bg-green-700"

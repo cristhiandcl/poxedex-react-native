@@ -11,7 +11,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
 import Pokemon from "./Pokemon";
-import { useNavigation } from "@react-navigation/native";
 
 // const client = axios.create({
 //   baseURL: "",

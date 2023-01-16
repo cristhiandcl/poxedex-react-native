@@ -13,7 +13,7 @@ export const pokemonsSlice = createSlice({
     },
     filterPokemon: (state, action) => {
       const temp = state.pokemons.filter(
-        (pokemon) => pokemon.name === action.payload.toLowerCase()
+        (pokemon) => pokemon.name === action.payload.toLowerCase().trim()
       );
       state.pokemons = [...temp];
     },
