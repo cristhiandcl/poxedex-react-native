@@ -10,7 +10,6 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { debounce } from "lodash";
 import * as Animatable from "react-native-animatable";
 import React, { useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -96,7 +95,7 @@ const HomeScreen = () => {
           favorite pokemons to your personal space, and create your own{" "}
           <Text className="text-red-700 text-sm">poxedex</Text>
         </Animatable.Text>
-        {!isTouched && (
+        {!isTouched ? (
           <TouchableOpacity
             onPress={() => {
               setIsTouched(true);
@@ -105,8 +104,7 @@ const HomeScreen = () => {
           >
             <MagnifyingGlassCircleIcon size={40} color="green" />
           </TouchableOpacity>
-        )}
-        {isTouched && (
+        ) : (
           <Animatable.View animation="slideInLeft" className="flex-row mx-4">
             <TextInput
               className="border-rounded flex-1"
@@ -130,7 +128,7 @@ const HomeScreen = () => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <Pokemons pokemons={pokemons} />
         </ScrollView>
-        {pokemons.length === 1 && (
+        {pokemons.length <= 1 && (
           <Animatable.View animation="fadeInDownBig" className="mb-12">
             <TouchableOpacity
               className="w-1/4 rounded-full p-2 self-center bg-green-700"
