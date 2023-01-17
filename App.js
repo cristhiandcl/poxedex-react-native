@@ -6,13 +6,11 @@ import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignInScreen from "./screens/SignInScreen";
 import { store } from "./store";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { setPokemons } from "./slices/pokemonsSlice";
 import PokemonDetailsScreen from "./screens/PokemonDetailsScreen";
 import MySpaceScreen from "./screens/MySpaceScreen";
 import { pokemonsData } from "./pokemonsData";
-import AppJulian from "./screens/AppJulian";
-import UserPage from "./screens/UserPage";
 
 // const client = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
 
@@ -61,10 +59,6 @@ function AppWrapper() {
           component={MySpaceScreen}
           options={{ headerShown: false }}
         />
-
-        {/* julian */}
-        <Stack.Screen name="login" component={AppJulian} />
-        <Stack.Screen name="userPage" component={UserPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

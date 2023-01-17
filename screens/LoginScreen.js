@@ -145,12 +145,6 @@ const Login = () => {
               Don't Have an Account ?
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            className="bg-gray-500 p-2 rounded"
-            onPress={() => navigation.navigate("login")}
-          >
-            <Text className="text-center font-bold text-white">Julian App</Text>
-          </TouchableOpacity>
         </View>
       </View>
     </TouchableWithoutFeedback>
