@@ -11,6 +11,7 @@ import { setPokemons } from "./slices/pokemonsSlice";
 import PokemonDetailsScreen from "./screens/PokemonDetailsScreen";
 import MySpaceScreen from "./screens/MySpaceScreen";
 import { pokemonsData } from "./pokemonsData";
+import AppJulian from "./screens/AppJulian";
 
 // const client = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
 
@@ -59,6 +60,9 @@ function AppWrapper() {
           component={MySpaceScreen}
           options={{ headerShown: false }}
         />
+
+        {/* julian */}
+        <Stack.Screen name="login" component={AppJulian} />
       </Stack.Navigator>
     </NavigationContainer>
   );
