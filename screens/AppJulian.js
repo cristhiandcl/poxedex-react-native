@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 import axios from "axios";
-// import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from "react-native-vector-icons/FontAwesome5";
 import { setUsuario } from "../slices/usuarioSlice";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,17 +48,13 @@ const AppJulian = () => {
         },
       });
       const newUsuario = {
-        token: JSON.stringify(resultado.data),
+        token: resultado.data.token,
       };
       dispatch(setUsuario(newUsuario));
-      setToken(JSON.stringify(resultado.data));
+      setToken(resultado.data.token);
+      navigation.navigate("userPage");
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const loginValidation = () => {
-    if (token === "") {
       Alert.alert(
         "Credenciales erróneas",
         "Por favor verifique que sus datos están correctamente diligenciados",
@@ -71,6 +67,21 @@ const AppJulian = () => {
       );
     }
   };
+
+  //   const loginValidation = () => {
+  //     if (token === "") {
+  //       Alert.alert(
+  //         "Credenciales erróneas",
+  //         "Por favor verifique que sus datos están correctamente diligenciados",
+  //         [
+  //           {
+  //             text: "Ok",
+  //             style: "cancel",
+  //           },
+  //         ]
+  //       );
+  //     }
+  //   };
   return (
     <View>
       <Modal
@@ -161,7 +172,8 @@ const AppJulian = () => {
           style={styles.loginBotton}
           onPress={() => {
             consultarAPI();
-            loginValidation();
+            // loginValidation();
+            console.log(token);
           }}
         >
           <Text style={styles.textLoginBotton}>Ingresar</Text>
@@ -185,7 +197,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginBottom: 5,
     color: "#000",
-    fontFamily: "OpenSans-SemiBold",
+    // fontFamily: "OpenSans-SemiBold",
   },
   loginInput: {
     height: 35,
@@ -197,18 +209,18 @@ const styles = StyleSheet.create({
     fontSize: 30 * 1.1,
     textAlign: "center",
     marginBottom: 5,
-    fontFamily: "OpenSans-BoldItalic",
+    // fontFamily: "OpenSans-BoldItalic",
     color: "#000",
   },
   loginTextInfo: {
-    fontFamily: "OpenSans-Medium",
+    // fontFamily: "OpenSans-Medium",
     color: "#000",
     textAlign: "center",
     fontSize: 12 * 1.1,
     marginTop: 25,
   },
   monitorText: {
-    fontFamily: "OpenSans-Medium",
+    // fontFamily: "OpenSans-Medium",
     color: "#000",
     textAlign: "right",
     marginRight: 90,
@@ -221,7 +233,7 @@ const styles = StyleSheet.create({
     marginRight: 20,
   },
   forgetText: {
-    fontFamily: "OpenSans-Medium",
+    // fontFamily: "OpenSans-Medium",
     color: "#0074B7",
     textDecorationLine: "underline",
   },
@@ -238,7 +250,7 @@ const styles = StyleSheet.create({
     height: 30,
   },
   textLoginBotton: {
-    fontFamily: "OpenSans-SemiBold",
+    // fontFamily: "OpenSans-SemiBold",
     textAlign: "center",
     color: "#000",
   },
@@ -258,7 +270,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
   },
   modalTextInfo: {
-    fontFamily: "OpenSans-Bold",
+    // fontFamily: "OpenSans-Bold",
     color: "#000",
     textAlign: "center",
     fontSize: 15 * 1.1,
