@@ -20,7 +20,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
 import Input from "../components/Input";
 import ClearSearch from "../components/ClearSearch";
-// import FastImage from "react-native-fast-image";
 
 const auth = getAuth(app);
 
@@ -60,7 +59,7 @@ const HomeScreen = () => {
               <ArrowLeftOnRectangleIcon size={40} color="green" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate("MySpace")}>
-              <FastImage
+              <Image
                 source={
                   user?.photoURL
                     ? { uri: user?.photoURL }
