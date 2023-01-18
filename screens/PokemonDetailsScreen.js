@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React, { useEffect } from "react";
+import React, { useMemo } from "react";
 import { useRoute } from "@react-navigation/native";
 import PokemonDetails from "../components/PokemonDetails";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +14,7 @@ const PokemonDetailsScreen = () => {
   } = useRoute();
   const pokemon = pokemons.filter((pokemon) => pokemon.name === name)[0];
 
-  useEffect(() => {
+  useMemo(() => {
     dispatch(setPokemon(pokemon));
   }, []);
 

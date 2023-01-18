@@ -8,7 +8,7 @@ import { getPokemon } from "../slices/pokemonSlice";
 const PokemonDetails = () => {
   const navigation = useNavigation();
   const pokemon = useSelector(getPokemon);
-
+  console.log(pokemon);
   return (
     <View className="h-full items-center justify-center relative">
       <TouchableOpacity
