@@ -44,8 +44,6 @@ const HomeScreen = () => {
       });
   };
 
-  // const changeTextDebouncer = debounce(onChange, 600);
-
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView

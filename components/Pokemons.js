@@ -18,11 +18,10 @@ import Pokemon from "./Pokemon";
 
 const Pokemons = () => {
   const pokemons = useSelector(getPokemons);
-  // console.log(pokemons)
 
-  // const renderPokemons = pokemons?.map((pokemon) => (
-  //   <Pokemon pokemon={pokemon} key={pokemon.id} />
-  // ));
+  const renderPokemons = pokemons?.map((pokemon) => (
+    <Pokemon pokemon={pokemon} key={pokemon.id} />
+  ));
 
   return (
     <View
@@ -33,9 +32,7 @@ const Pokemons = () => {
             "flex-col items-center justify-center mt-20"
       }
     >
-      {pokemons?.map((pokemon) => (
-        <Pokemon pokemon={pokemon} key={pokemon.id} />
-      ))}
+      {renderPokemons}
     </View>
   );
 };
