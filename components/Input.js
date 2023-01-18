@@ -7,26 +7,29 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { MagnifyingGlassCircleIcon } from "react-native-heroicons/solid";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as Animatable from "react-native-animatable";
-import { filterPokemon } from "../slices/pokemonsSlice";
+import { filterPokemon, getPokemons } from "../slices/pokemonsSlice";
 
 const Input = () => {
   const dispatch = useDispatch();
   const [pokemonName, onChangeText] = useState("");
   const [isTouched, setIsTouched] = useState(false);
   const [isTriggered, setIsTriggered] = useState(false);
-
+  const pokemons = useSelector(getPokemons);
   const wrongAnswer = "You must type down a valid Pokemon's name";
+  const names = pokemons.map((pokemon) => pokemon.name);
 
   const filterPokemons = () => {
-    if (pokemonName !== "") {
+    if (names.includes(pokemonName.toLowerCase().trim())) {
       dispatch(filterPokemon(pokemonName));
       Keyboard.dismiss();
       onChangeText("");
-      setIsTriggered(false);
     } else {
       setIsTriggered(true);
+      setTimeout(() => {
+        setIsTriggered(false);
+      }, 3000);
     }
   };
 
@@ -57,7 +60,11 @@ const Input = () => {
           </TouchableOpacity>
         </Animatable.View>
       )}
-      {isTriggered && <Text>{wrongAnswer}</Text>}
+      {isTriggered && (
+        <Text className="text-red-500 font-extrabold text-xs text-center opacity-50">
+          {wrongAnswer}
+        </Text>
+      )}
     </View>
   );
 };
