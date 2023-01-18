@@ -10,8 +10,8 @@ const PokemonDetails = () => {
   const pokemon = useSelector(getPokemon);
   console.log(pokemon);
   return (
-    <View className="h-full items-center justify-center relative">
-      <TouchableOpacity
+    <View>
+      {/* <TouchableOpacity
         className="absolute top-4 right-4"
         onPress={navigation.goBack}
       >
@@ -22,7 +22,7 @@ const PokemonDetails = () => {
           uri: pokemon.sprites.other["official-artwork"].front_default,
         }}
         className="w-80 h-80"
-      />
+      /> */}
     </View>
   );
 };
