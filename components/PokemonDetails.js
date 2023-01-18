@@ -2,9 +2,13 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { XCircleIcon, XMarkIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { getPokemon } from "../slices/pokemonSlice";
 
-const PokemonDetails = ({ pokemon }) => {
+const PokemonDetails = () => {
   const navigation = useNavigation();
+  const pokemon = useSelector(getPokemon);
+
   return (
     <View className="h-full items-center justify-center relative">
       <TouchableOpacity
