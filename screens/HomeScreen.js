@@ -60,7 +60,7 @@ const HomeScreen = () => {
               <ArrowLeftOnRectangleIcon size={40} color="green" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.navigate("MySpace")}>
-              <Image
+              <FastImage
                 source={
                   user?.photoURL
                     ? { uri: user?.photoURL }
