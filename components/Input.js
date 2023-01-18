@@ -15,16 +15,23 @@ const Input = () => {
   const dispatch = useDispatch();
   const [pokemonName, onChangeText] = useState("");
   const [isTouched, setIsTouched] = useState(false);
+  const [isTriggered, setIsTriggered] = useState(false);
+
+  const wrongAnswer = "You must type down a valid Pokemon's name";
 
   const filterPokemons = () => {
-    dispatch(filterPokemon(pokemonName));
-    Keyboard.dismiss();
-    onChangeText("");
+    if (pokemonName !== "") {
+      dispatch(filterPokemon(pokemonName));
+      Keyboard.dismiss();
+      onChangeText("");
+      setIsTriggered(false);
+    } else {
+      setIsTriggered(true);
+    }
   };
 
   const onChange = (value) => {
     onChangeText(value);
-    // console.log(value);
   };
   return (
     <View>
@@ -50,6 +57,7 @@ const Input = () => {
           </TouchableOpacity>
         </Animatable.View>
       )}
+      {isTriggered && <Text>{wrongAnswer}</Text>}
     </View>
   );
 };
