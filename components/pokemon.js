@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, Text, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
@@ -7,10 +7,11 @@ import { getPokemons } from "../slices/pokemonsSlice";
 function Pokemon({ pokemon }) {
   const navigation = useNavigation();
   const pokemons = useSelector(getPokemons);
+
   return (
     <TouchableOpacity
       // key={pokemon.id}
-      onPress={() => navigation.push("PokemonDetails", { pokemon })}
+      onPress={() => navigation.push("PokemonDetails", { name: pokemon.name })}
       className="items-center justify-center"
     >
       {/* <View > */}
