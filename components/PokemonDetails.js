@@ -8,11 +8,13 @@ import { getPokemon } from "../slices/pokemonSlice";
 const PokemonDetails = () => {
   const pokemon = useSelector(getPokemon);
   const renderAbilities = pokemon.abilities.map((ability) => (
-    <Text>{ability.ability.name}</Text>
+    <Text className="font-extrabold text-lg">
+      {ability.ability.name[0].toUpperCase() + ability.ability.name.slice(1)}
+    </Text>
   ));
 
   return (
-    <View className="bg-green-700 rounded-3xl flex-row flex-wrap items-center space-x-6 justify-around mx-8 space-y-4 p-6">
+    <View className="bg-green-700 rounded-3xl flex-row flex-wrap items-baseline space-x-6 justify-around mx-8 space-y-4 p-6">
       <View className="">
         <Text className="font-extrabold text-xl text-white">Height</Text>
         <Text className="font-extrabold text-lg">
@@ -32,7 +34,7 @@ const PokemonDetails = () => {
       <View>
         <Text className="font-extrabold text-xl text-white">Abilities</Text>
         {/* <Text className="font-extrabold text-lg">Abilities</Text> */}
-        {renderAbilities}
+        <View className="">{renderAbilities}</View>
       </View>
 
       <View>
