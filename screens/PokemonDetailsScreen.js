@@ -13,6 +13,7 @@ const PokemonDetailsScreen = () => {
   const pokemons = useSelector(getPokemons);
   const dispatch = useDispatch();
   const [isTouched, setIsTouched] = useState(false);
+  const [displayMessage, setDisplayMessage] = useState(false);
   const {
     params: { name },
   } = useRoute();
@@ -25,6 +26,17 @@ const PokemonDetailsScreen = () => {
 
   const pokemon = useSelector(getPokemon);
   // console.log(pokemon);
+  const alert = isTouched
+    ? "Added to your Pokedex"
+    : "Removed from your Pokedex";
+
+  const addPokemon = () => {
+    setIsTouched(!isTouched);
+    setDisplayMessage(true);
+    setTimeout(() => {
+      setDisplayMessage(false);
+    }, 1000);
+  };
 
   return (
     <View className="relative h-full pb-12">
@@ -37,23 +49,25 @@ const PokemonDetailsScreen = () => {
       {isTouched ? (
         <TouchableOpacity
           className="absolute top-4 left-4"
-          onPress={() => setIsTouched(!isTouched)}
+          onPress={addPokemon}
         >
           <CheckIcon size={45} color="green" />
         </TouchableOpacity>
       ) : (
         <TouchableOpacity
           className="absolute top-4 left-4"
-          onPress={() => setIsTouched(!isTouched)}
+          onPress={addPokemon}
         >
           <PlusIcon size={45} color="gray" />
         </TouchableOpacity>
       )}
-      <View className="items-center z-10">
-        <Text className="font-extrabold absolute top-80 text-lg text-white">
-          Added to your Pokedex
-        </Text>
-      </View>
+      {displayMessage && (
+        <View className="items-center z-10">
+          <Text className="font-extrabold absolute top-80 text-lg text-red-600">
+            {alert}
+          </Text>
+        </View>
+      )}
       <View className="items-center mt-16">
         <Text className="text-5xl font-extrabold p-0">
           {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
