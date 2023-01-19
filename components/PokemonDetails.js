@@ -14,11 +14,11 @@ const PokemonDetails = () => {
   ));
 
   return (
-    <View className="bg-green-700 rounded-3xl flex-row flex-wrap items-baseline space-x-6 justify-around mx-8 space-y-4 p-6">
+    <View className="bg-green-700 rounded-3xl flex-row flex-wrap items-baseline space-x-5 justify-around mx-8 space-y-4 p-6">
       <View className="">
         <Text className="font-extrabold text-xl text-white">Height</Text>
         <Text className="font-extrabold text-lg">
-          {Math.round(pokemon.height * 0.1)} m
+          {(pokemon.height * 0.1).toFixed(2)} m
         </Text>
       </View>
       <View>
@@ -28,7 +28,7 @@ const PokemonDetails = () => {
       <View>
         <Text className="font-extrabold text-xl text-white">Weight</Text>
         <Text className="font-extrabold text-lg">
-          {Math.round(pokemon.weight * 0.1)} Kg
+          {(pokemon.weight * 0.1).toFixed(2)} Kg
         </Text>
       </View>
       <View>
