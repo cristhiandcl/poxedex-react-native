@@ -1,17 +1,18 @@
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import PokemonDetails from "../components/PokemonDetails";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
 import { getPokemon, setPokemon } from "../slices/pokemonSlice";
-import { XCircleIcon } from "react-native-heroicons/solid";
+import { CheckIcon, PlusIcon, XCircleIcon } from "react-native-heroicons/solid";
 import PokemonStats from "../components/PokemonStats";
 
 const PokemonDetailsScreen = () => {
   const navigation = useNavigation();
   const pokemons = useSelector(getPokemons);
   const dispatch = useDispatch();
+  const [isTouched, setIsTouched] = useState(false);
   const {
     params: { name },
   } = useRoute();
@@ -33,6 +34,26 @@ const PokemonDetailsScreen = () => {
       >
         <XCircleIcon size={50} color="green" />
       </TouchableOpacity>
+      {isTouched ? (
+        <TouchableOpacity
+          className="absolute top-4 left-4"
+          onPress={() => setIsTouched(!isTouched)}
+        >
+          <CheckIcon size={45} color="green" />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          className="absolute top-4 left-4"
+          onPress={() => setIsTouched(!isTouched)}
+        >
+          <PlusIcon size={45} color="gray" />
+        </TouchableOpacity>
+      )}
+      <View className="items-center z-10">
+        <Text className="font-extrabold absolute top-80 text-lg text-white">
+          Added to your Pokedex
+        </Text>
+      </View>
       <View className="items-center mt-16">
         <Text className="text-5xl font-extrabold p-0">
           {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
