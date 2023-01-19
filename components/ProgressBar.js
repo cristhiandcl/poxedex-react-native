@@ -2,7 +2,6 @@ import { View, Text } from "react-native";
 import React from "react";
 
 const ProgressBar = ({ progress, max }) => {
-  console.log(max);
   return (
     <View className="border-2 h-5 rounded-xl bg-gray-300 w-full">
       <View

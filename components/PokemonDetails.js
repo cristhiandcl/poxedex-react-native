@@ -1,7 +1,5 @@
 import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
 import React from "react";
-import { XCircleIcon, XMarkIcon } from "react-native-heroicons/solid";
-import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { getPokemon } from "../slices/pokemonSlice";
 

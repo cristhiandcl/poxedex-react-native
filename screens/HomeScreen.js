@@ -55,7 +55,7 @@ const HomeScreen = () => {
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView
         className={`relative h-full ${
-          Platform.OS === "android" && "mt-4"
+          Platform.OS === "android" && "mt-8"
         } py-4 space-y-7`}
       >
         {Platform.OS === "ios" ? (

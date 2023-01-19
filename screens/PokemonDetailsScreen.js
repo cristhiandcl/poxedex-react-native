@@ -25,7 +25,6 @@ const PokemonDetailsScreen = () => {
   }, []);
 
   const pokemon = useSelector(getPokemon);
-  // console.log(pokemon);
   const alert = isTouched
     ? "Added to your Pokedex"
     : "Removed from your Pokedex";
