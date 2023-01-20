@@ -22,23 +22,13 @@ const PokemonDetailsScreen = () => {
     dispatch(
       setPokemon(pokemons.filter((pokemon) => pokemon.name === name)[0])
     );
-  }, []);
-  // const [pokemon, setPokemon] = useState(trial);
+  }, [addPokemon]);
   const alert = !pokemon.isSaved
     ? "Added to your Pokedex"
     : "Removed from your Pokedex";
 
-  const renderAddRemovePokemon = pokemon.isSaved ? (
-    <TouchableOpacity className="absolute top-4 left-4" onPress={addPokemon}>
-      <CheckIcon size={45} color="green" />
-    </TouchableOpacity>
-  ) : (
-    <TouchableOpacity className="absolute top-4 left-4" onPress={addPokemon}>
-      <PlusIcon size={45} color="gray" />
-    </TouchableOpacity>
-  );
-
   const addPokemon = () => {
+    console.log(pokemon);
     setDisplayMessage(true);
     setTimeout(() => {
       dispatch(
@@ -53,7 +43,6 @@ const PokemonDetailsScreen = () => {
       setDisplayMessage(false);
     }, 1000);
   };
-  // console.log(pokemon);
 
   return (
     <View className="relative h-full pb-12">
@@ -63,7 +52,21 @@ const PokemonDetailsScreen = () => {
       >
         <XCircleIcon size={50} color="green" />
       </TouchableOpacity>
-      {renderAddRemovePokemon}
+      {pokemon.isSaved ? (
+        <TouchableOpacity
+          className="absolute top-4 left-4"
+          onPress={addPokemon}
+        >
+          <CheckIcon size={45} color="green" />
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity
+          className="absolute top-4 left-4"
+          onPress={addPokemon}
+        >
+          <PlusIcon size={45} color="gray" />
+        </TouchableOpacity>
+      )}
       {displayMessage && (
         <View className="items-center z-10">
           <Text className="font-extrabold absolute top-80 text-lg text-red-600">
@@ -73,7 +76,7 @@ const PokemonDetailsScreen = () => {
       )}
       <View className="items-center mt-16">
         <Text className="text-5xl font-extrabold p-0">
-          {pokemon.name[0].toUpperCase() + pokemon.name.slice(1)}
+          {pokemon?.name[0].toUpperCase() + pokemon.name.slice(1)}
         </Text>
         <Text className="text-gray-300 font-extrabold text-lg text-center p-0">
           N.°{pokemon?.id}
@@ -83,7 +86,7 @@ const PokemonDetailsScreen = () => {
         <View className="items-center justify-center space-y-8">
           <Image
             source={{
-              uri: pokemon.sprites.other["official-artwork"].front_default,
+              uri: pokemon?.sprites.other["official-artwork"].front_default,
             }}
             className="w-80 h-80"
           />
