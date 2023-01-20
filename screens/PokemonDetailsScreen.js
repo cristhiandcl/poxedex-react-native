@@ -12,25 +12,33 @@ const PokemonDetailsScreen = () => {
   const navigation = useNavigation();
   const pokemons = useSelector(getPokemons);
   const dispatch = useDispatch();
-  // const [isTouched, setIsTouched] = useState(false);
+  const pokemon = useSelector(getPokemon);
   const [displayMessage, setDisplayMessage] = useState(false);
   const {
     params: { name },
   } = useRoute();
 
-  useEffect(() => {
+  useMemo(() => {
     dispatch(
       setPokemon(pokemons.filter((pokemon) => pokemon.name === name)[0])
     );
-  }, [addPokemon]);
-
-  const pokemon = useSelector(getPokemon);
+  }, []);
+  // const [pokemon, setPokemon] = useState(trial);
   const alert = !pokemon.isSaved
     ? "Added to your Pokedex"
     : "Removed from your Pokedex";
 
+  const renderAddRemovePokemon = pokemon.isSaved ? (
+    <TouchableOpacity className="absolute top-4 left-4" onPress={addPokemon}>
+      <CheckIcon size={45} color="green" />
+    </TouchableOpacity>
+  ) : (
+    <TouchableOpacity className="absolute top-4 left-4" onPress={addPokemon}>
+      <PlusIcon size={45} color="gray" />
+    </TouchableOpacity>
+  );
+
   const addPokemon = () => {
-    // setIsTouched(!isTouched);
     setDisplayMessage(true);
     setTimeout(() => {
       dispatch(
@@ -55,21 +63,7 @@ const PokemonDetailsScreen = () => {
       >
         <XCircleIcon size={50} color="green" />
       </TouchableOpacity>
-      {pokemon.isSaved ? (
-        <TouchableOpacity
-          className="absolute top-4 left-4"
-          onPress={addPokemon}
-        >
-          <CheckIcon size={45} color="green" />
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          className="absolute top-4 left-4"
-          onPress={addPokemon}
-        >
-          <PlusIcon size={45} color="gray" />
-        </TouchableOpacity>
-      )}
+      {renderAddRemovePokemon}
       {displayMessage && (
         <View className="items-center z-10">
           <Text className="font-extrabold absolute top-80 text-lg text-red-600">
