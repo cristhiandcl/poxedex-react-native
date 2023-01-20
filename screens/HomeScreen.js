@@ -32,7 +32,6 @@ const HomeScreen = () => {
   const [message, setMessage] = useState(true);
 
   const pokemons = useSelector(getPokemons);
-  // const backUp = useSelector(getPokemons);
 
   const signOutButton = () => {
     signOut(auth)

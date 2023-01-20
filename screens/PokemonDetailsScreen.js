@@ -1,9 +1,9 @@
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import PokemonDetails from "../components/PokemonDetails";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons } from "../slices/pokemonsSlice";
+import { getPokemons, setPokemons } from "../slices/pokemonsSlice";
 import { getPokemon, setPokemon } from "../slices/pokemonSlice";
 import { CheckIcon, PlusIcon, XCircleIcon } from "react-native-heroicons/solid";
 import PokemonStats from "../components/PokemonStats";
@@ -35,6 +35,15 @@ const PokemonDetailsScreen = () => {
     setTimeout(() => {
       setDisplayMessage(false);
     }, 1000);
+    // dispatch(
+    //   setPokemons(
+    //     useSelector(getPokemons).map((pokemon) =>
+    //       pokemon.name === name
+    //         ? { ...pokemon, isSaved: !pokemon.isSaved }
+    //         : pokemon
+    //     )
+    //   )
+    // );
   };
 
   return (

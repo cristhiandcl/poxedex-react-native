@@ -28,7 +28,11 @@ function AppWrapper() {
     //     const response = await client.get(`pokemon/${i}`);
     //     tempPokemons.push(response.data);
     //   }
-    dispatch(setPokemons(pokemonsData));
+    dispatch(
+      setPokemons(
+        pokemonsData.map((pokemon) => ({ ...pokemon, isSaved: false }))
+      )
+    );
     // })();
   }, []);
 
