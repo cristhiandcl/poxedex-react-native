@@ -12,39 +12,40 @@ const PokemonDetailsScreen = () => {
   const navigation = useNavigation();
   const pokemons = useSelector(getPokemons);
   const dispatch = useDispatch();
-  const [isTouched, setIsTouched] = useState(false);
+  // const [isTouched, setIsTouched] = useState(false);
   const [displayMessage, setDisplayMessage] = useState(false);
   const {
     params: { name },
   } = useRoute();
 
-  useMemo(() => {
+  useEffect(() => {
     dispatch(
       setPokemon(pokemons.filter((pokemon) => pokemon.name === name)[0])
     );
-  }, []);
+  }, [addPokemon]);
 
   const pokemon = useSelector(getPokemon);
-  const alert = isTouched
+  const alert = !pokemon.isSaved
     ? "Added to your Pokedex"
     : "Removed from your Pokedex";
 
   const addPokemon = () => {
-    setIsTouched(!isTouched);
+    // setIsTouched(!isTouched);
     setDisplayMessage(true);
     setTimeout(() => {
+      dispatch(
+        setPokemons(
+          pokemons.map((pokemon) =>
+            pokemon.name === name
+              ? { ...pokemon, isSaved: !pokemon.isSaved }
+              : pokemon
+          )
+        )
+      );
       setDisplayMessage(false);
     }, 1000);
-    // dispatch(
-    //   setPokemons(
-    //     useSelector(getPokemons).map((pokemon) =>
-    //       pokemon.name === name
-    //         ? { ...pokemon, isSaved: !pokemon.isSaved }
-    //         : pokemon
-    //     )
-    //   )
-    // );
   };
+  // console.log(pokemon);
 
   return (
     <View className="relative h-full pb-12">
@@ -54,7 +55,7 @@ const PokemonDetailsScreen = () => {
       >
         <XCircleIcon size={50} color="green" />
       </TouchableOpacity>
-      {isTouched ? (
+      {pokemon.isSaved ? (
         <TouchableOpacity
           className="absolute top-4 left-4"
           onPress={addPokemon}
