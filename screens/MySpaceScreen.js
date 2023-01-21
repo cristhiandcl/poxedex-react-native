@@ -14,7 +14,7 @@ const MySpaceScreen = () => {
   const pokemons = useSelector(getPokemons).filter(
     (pokemon) => pokemon.isSaved
   );
-  console.log(pokemons.length);
+
   const renderPokemons = pokemons?.map((pokemon) => (
     <TouchableOpacity
       key={pokemon.id}

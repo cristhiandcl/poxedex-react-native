@@ -5,6 +5,7 @@ import { getPokemon } from "../slices/pokemonSlice";
 
 const PokemonDetails = () => {
   const pokemon = useSelector(getPokemon);
+
   const renderAbilities = pokemon.abilities.map((ability) => (
     <Text className="font-extrabold text-lg" key={ability.ability.name}>
       {ability.ability.name[0].toUpperCase() + ability.ability.name.slice(1)}
@@ -31,7 +32,6 @@ const PokemonDetails = () => {
       </View>
       <View>
         <Text className="font-extrabold text-xl text-white">Abilities</Text>
-        {/* <Text className="font-extrabold text-lg">Abilities</Text> */}
         <View className="">{renderAbilities}</View>
       </View>
 

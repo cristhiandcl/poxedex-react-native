@@ -23,12 +23,12 @@ const PokemonDetailsScreen = () => {
       setPokemon(pokemons?.filter((pokemon) => pokemon.name === name)[0])
     );
   }, [addPokemon]);
+
   const alert = !pokemon.isSaved
     ? "Added to your Pokedex"
     : "Removed from your Pokedex";
 
   const addPokemon = () => {
-    console.log(pokemon);
     setDisplayMessage(true);
     setTimeout(() => {
       dispatch(
