@@ -20,7 +20,7 @@ const PokemonDetailsScreen = () => {
 
   useMemo(() => {
     dispatch(
-      setPokemon(pokemons.filter((pokemon) => pokemon.name === name)[0])
+      setPokemon(pokemons?.filter((pokemon) => pokemon.name === name)[0])
     );
   }, [addPokemon]);
   const alert = !pokemon.isSaved
@@ -82,7 +82,7 @@ const PokemonDetailsScreen = () => {
           N.°{pokemon?.id}
         </Text>
       </View>
-      <ScrollView className="">
+      <ScrollView className="" showsVerticalScrollIndicator={false}>
         <View className="items-center justify-center space-y-8">
           <Image
             source={{
