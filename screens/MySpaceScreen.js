@@ -17,7 +17,7 @@ const MySpaceScreen = () => {
   console.log(pokemons.length);
   const renderPokemons = pokemons?.map((pokemon) => (
     <TouchableOpacity
-      // key={pokemon.id}
+      key={pokemon.id}
       onPress={() => navigation.push("PokemonDetails", { name: pokemon.name })}
       className="items-center justify-center"
     >
@@ -39,7 +39,6 @@ const MySpaceScreen = () => {
     </TouchableOpacity>
   ));
 
-  console.log(renderPokemons);
   return (
     <View
       className={`${
