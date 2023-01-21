@@ -23,7 +23,7 @@ const MySpaceScreen = () => {
     >
       {/* <View > */}
       <Image
-        className={pokemons.length > 1 ? "h-[200] w-[200]" : "h-[260] w-[260]"}
+        className={pokemons.length > 1 ? "h-[180] w-[180]" : "h-[260] w-[260]"}
         source={{
           uri: pokemon?.sprites.other["official-artwork"].front_default,
           // priority: FastImage.priority.high,
@@ -43,8 +43,8 @@ const MySpaceScreen = () => {
   return (
     <View
       className={`${
-        pokemons?.length === 0 && "items-center"
-      } relative space-y-8 mt-10 h-full pb-20`}
+        pokemons?.length === 0 && "justify-center"
+      } relative space-y-8 mt-10 h-full pb-20 items-center`}
     >
       <TouchableOpacity
         className="absolute top-0 left-4"
@@ -52,7 +52,7 @@ const MySpaceScreen = () => {
       >
         <ArrowLeftCircleIcon size={50} color="green" />
       </TouchableOpacity>
-      <View className="pt-6 flex-1 justify-center">
+      <View className="pt-6">
         <Text className="text-2xl font-extrabold text-center">
           {user.displayName} <Text className="text-red-600">Pokedex</Text>
         </Text>
@@ -62,7 +62,10 @@ const MySpaceScreen = () => {
           </Text>
         </View>
       </View>
-      <ScrollView className="" showsVerticalScrollIndicator={false}>
+      <ScrollView
+        className={pokemons.length === 0 && "hidden"}
+        showsVerticalScrollIndicator={false}
+      >
         {renderPokemons}
       </ScrollView>
     </View>
