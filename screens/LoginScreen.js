@@ -53,11 +53,10 @@ const Login = () => {
       const credential = GoogleAuthProvider.credential(id_token);
       signInWithCredential(auth, credential).then((result) => {
         (async () => {
+          const user = result.user.displayName;
           await setDoc(
             doc(db, "users", result.user.uid),
-            {
-              saved: [],
-            },
+            { user: `${user}` },
             { merge: true }
           );
         })();
