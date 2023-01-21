@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, FlatList } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import { getPokemon } from "../slices/pokemonSlice";
