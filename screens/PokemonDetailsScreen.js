@@ -7,6 +7,12 @@ import { getPokemons, setPokemons } from "../slices/pokemonsSlice";
 import { getPokemon, setPokemon } from "../slices/pokemonSlice";
 import { CheckIcon, PlusIcon, XCircleIcon } from "react-native-heroicons/solid";
 import PokemonStats from "../components/PokemonStats";
+import { arrayUnion, doc, getFirestore, setDoc } from "firebase/firestore";
+import app from "../firebaseConfig";
+import { getAuth } from "firebase/auth";
+
+const db = getFirestore(app);
+const user = getAuth(app).currentUser;
 
 const PokemonDetailsScreen = () => {
   const navigation = useNavigation();
@@ -17,6 +23,7 @@ const PokemonDetailsScreen = () => {
   const {
     params: { name },
   } = useRoute();
+  console.log(user);
 
   useMemo(() => {
     dispatch(
@@ -31,15 +38,25 @@ const PokemonDetailsScreen = () => {
   const addPokemon = () => {
     setDisplayMessage(true);
     setTimeout(() => {
-      dispatch(
-        setPokemons(
-          pokemons.map((pokemon) =>
-            pokemon.name === name
-              ? { ...pokemon, isSaved: !pokemon.isSaved }
-              : pokemon
-          )
-        )
-      );
+      (async () => {
+        await setDoc(
+          doc(db, "users", user.uid),
+          {
+            saved: arrayUnion(name),
+          },
+          { merge: true }
+        );
+      })();
+
+      // dispatch(
+      //   setPokemons(
+      //     pokemons.map((pokemon) =>
+      //       pokemon.name === name
+      //         ? { ...pokemon, isSaved: !pokemon.isSaved }
+      //         : pokemon
+      //     )
+      //   )
+      // );
       setDisplayMessage(false);
     }, 1000);
   };
