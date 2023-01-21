@@ -12,7 +12,6 @@ import app from "../firebaseConfig";
 import { getAuth } from "firebase/auth";
 
 const db = getFirestore(app);
-const user = getAuth(app).currentUser;
 
 const PokemonDetailsScreen = () => {
   const navigation = useNavigation();
@@ -23,7 +22,7 @@ const PokemonDetailsScreen = () => {
   const {
     params: { name },
   } = useRoute();
-  console.log(user);
+  const user = getAuth(app).currentUser;
 
   useMemo(() => {
     dispatch(

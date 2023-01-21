@@ -15,8 +15,10 @@ import {
 } from "firebase/auth";
 import { app } from "../firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 const SignInScreen = () => {
   const [userData, onChangeText] = useState({
@@ -42,6 +44,13 @@ const SignInScreen = () => {
           Alert.alert("Sign Out", "User Created Successfully", [
             { text: "OK", onPress: navigation.goBack },
           ]);
+          (async () => {
+            await setDoc(
+              doc(db, "users", user.uid),
+              { user: `${userData.name}` },
+              { merge: true }
+            );
+          })();
         });
         console.log(user);
       })
