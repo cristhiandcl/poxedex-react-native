@@ -20,8 +20,16 @@ import { useNavigation } from "@react-navigation/native";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import { KEYS } from "../keys";
+import {
+  addDoc,
+  collection,
+  doc,
+  getFirestore,
+  setDoc,
+} from "firebase/firestore";
 
 const auth = getAuth(app);
+const db = getFirestore(app);
 WebBrowser.maybeCompleteAuthSession();
 
 const Login = () => {
@@ -36,16 +44,23 @@ const Login = () => {
     iosClientId: KEYS.iosClientId,
   });
 
-  const [errorMessage, setErrorMessage] = useState("");
   const navigation = useNavigation();
 
   // LogIn With Google
   useEffect(() => {
     if (response?.type === "success") {
       const { id_token } = response.params;
-      // const auth = getAuth();
       const credential = GoogleAuthProvider.credential(id_token);
       signInWithCredential(auth, credential).then((result) => {
+        (async () => {
+          await setDoc(
+            doc(db, "users", result.user.uid),
+            {
+              saved: [],
+            },
+            { merge: true }
+          );
+        })();
         navigation.navigate("Home");
       });
     }
@@ -56,7 +71,6 @@ const Login = () => {
     signInWithEmailAndPassword(auth, userData.email, userData.password)
       .then((userCredential) => {
         // Signed in
-        setErrorMessage("");
         const user = userCredential.user;
         console.log(user);
         onChangeText({ email: "", password: "" });

@@ -13,7 +13,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import app from "../firebaseConfig";
+import { app } from "../firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
 
 const auth = getAuth(app);

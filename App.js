@@ -11,7 +11,6 @@ import { setPokemons } from "./slices/pokemonsSlice";
 import PokemonDetailsScreen from "./screens/PokemonDetailsScreen";
 import MySpaceScreen from "./screens/MySpaceScreen";
 import { pokemonsData } from "./pokemonsData";
-// import { AppRegistry } from "react-native";
 
 // const client = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
 
