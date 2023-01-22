@@ -7,7 +7,14 @@ import { getPokemons, setPokemons } from "../slices/pokemonsSlice";
 import { getPokemon, setPokemon } from "../slices/pokemonSlice";
 import { CheckIcon, PlusIcon, XCircleIcon } from "react-native-heroicons/solid";
 import PokemonStats from "../components/PokemonStats";
-import { arrayUnion, doc, getFirestore, setDoc } from "firebase/firestore";
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  getDoc,
+  getFirestore,
+  setDoc,
+} from "firebase/firestore";
 import app from "../firebaseConfig";
 import { getAuth } from "firebase/auth";
 
@@ -16,9 +23,9 @@ const db = getFirestore(app);
 const PokemonDetailsScreen = () => {
   const navigation = useNavigation();
   const pokemons = useSelector(getPokemons);
-  const [isTouched, setIsTouched] = useState(false);
-  const dispatch = useDispatch();
   const pokemon = useSelector(getPokemon);
+  const [isTouched, setIsTouched] = useState(pokemon.isSaved);
+  const dispatch = useDispatch();
   const [displayMessage, setDisplayMessage] = useState(false);
   const {
     params: { name },
@@ -29,7 +36,7 @@ const PokemonDetailsScreen = () => {
     dispatch(
       setPokemon(pokemons?.filter((pokemon) => pokemon.name === name)[0])
     );
-  }, [addPokemon]);
+  }, [isTouched]);
 
   const alert = !pokemon.isSaved
     ? "Added to your Pokedex"
@@ -37,26 +44,36 @@ const PokemonDetailsScreen = () => {
 
   const addPokemon = () => {
     setDisplayMessage(true);
+    setIsTouched(!isTouched);
+
+    (async () => {
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      await setDoc(
+        doc(db, "users", user.uid),
+        {
+          saved: docSnap.data().saved.includes(name)
+            ? arrayRemove(name)
+            : arrayUnion(name),
+        },
+        { merge: true }
+      );
+    })();
+
     setTimeout(() => {
       (async () => {
-        await setDoc(
-          doc(db, "users", user.uid),
-          {
-            saved: arrayUnion(name),
-          },
-          { merge: true }
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        dispatch(
+          setPokemons(
+            pokemons.map((pokemon) =>
+              docSnap.data().saved.includes(pokemon)
+                ? { ...pokemon, isSaved: true }
+                : { ...pokemon, isSaved: false }
+            )
+          )
         );
       })();
-
-      // dispatch(
-      //   setPokemons(
-      //     pokemons.map((pokemon) =>
-      //       pokemon.name === name
-      //         ? { ...pokemon, isSaved: !pokemon.isSaved }
-      //         : pokemon
-      //     )
-      //   )
-      // );
       setDisplayMessage(false);
     }, 1000);
   };
@@ -69,7 +86,7 @@ const PokemonDetailsScreen = () => {
       >
         <XCircleIcon size={50} color="green" />
       </TouchableOpacity>
-      {pokemon.isSaved ? (
+      {isTouched ? (
         <TouchableOpacity
           className="absolute top-4 left-4"
           onPress={addPokemon}
@@ -93,7 +110,7 @@ const PokemonDetailsScreen = () => {
       )}
       <View className="items-center mt-16">
         <Text className="text-5xl font-extrabold p-0">
-          {pokemon?.name[0].toUpperCase() + pokemon.name.slice(1)}
+          {pokemon?.name[0]?.toUpperCase() + pokemon.name.slice(1)}
         </Text>
         <Text className="text-gray-300 font-extrabold text-lg text-center p-0">
           N.°{pokemon?.id}

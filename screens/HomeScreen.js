@@ -38,24 +38,19 @@ const HomeScreen = () => {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
 
-      if (docSnap.exists()) {
-        console.log("Data Fetched");
-        dispatch(
-          setPokemons(
-            pokemons.map((pokemon) =>
-              docSnap.data().saved?.includes(pokemon.name)
-                ? { ...pokemon, isSaved: true }
-                : pokemon
-            )
+      dispatch(
+        setPokemons(
+          pokemons.map((pokemon) =>
+            docSnap.data().saved?.includes(pokemon.name)
+              ? { ...pokemon, isSaved: true }
+              : pokemon
           )
-        );
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
+        )
+      );
     })();
   }, []);
 
+  // console.log(pokemons);
   const signOutButton = () => {
     signOut(auth)
       .then(() => {
