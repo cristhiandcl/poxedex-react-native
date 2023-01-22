@@ -33,22 +33,22 @@ const HomeScreen = () => {
 
   const pokemons = useSelector(getPokemons);
 
-  useMemo(() => {
-    (async () => {
-      const docRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(docRef);
+  // useMemo(() => {
+  //   (async () => {
+  //     const docRef = doc(db, "users", user.uid);
+  //     const docSnap = await getDoc(docRef);
 
-      dispatch(
-        setPokemons(
-          pokemons.map((pokemon) =>
-            docSnap.data().saved?.includes(pokemon.name)
-              ? { ...pokemon, isSaved: true }
-              : pokemon
-          )
-        )
-      );
-    })();
-  }, []);
+  //     // dispatch(
+  //     //   setPokemons(
+  //     //     pokemons.map((pokemon) =>
+  //     //       docSnap.data().saved?.includes(pokemon.name)
+  //     //         ? { ...pokemon, isSaved: true }
+  //     //         : pokemon
+  //     //     )
+  //     //   )
+  //     // );
+  //   })();
+  // }, []);
 
   // console.log(pokemons);
   const signOutButton = () => {

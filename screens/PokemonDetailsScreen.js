@@ -24,7 +24,7 @@ const PokemonDetailsScreen = () => {
   const navigation = useNavigation();
   const pokemons = useSelector(getPokemons);
   const pokemon = useSelector(getPokemon);
-  const [isTouched, setIsTouched] = useState(pokemon.isSaved);
+  const [names, setNames] = useState();
   const dispatch = useDispatch();
   const [displayMessage, setDisplayMessage] = useState(false);
   const {
@@ -36,15 +36,20 @@ const PokemonDetailsScreen = () => {
     dispatch(
       setPokemon(pokemons?.filter((pokemon) => pokemon.name === name)[0])
     );
-  }, [isTouched]);
 
-  const alert = !pokemon.isSaved
+    (async () => {
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+      setNames(docSnap.data().saved);
+    })();
+  }, [addPokemon, name]);
+
+  const alert = !names?.includes(name)
     ? "Added to your Pokedex"
     : "Removed from your Pokedex";
 
   const addPokemon = () => {
     setDisplayMessage(true);
-    setIsTouched(!isTouched);
 
     (async () => {
       const docRef = doc(db, "users", user.uid);
@@ -59,21 +64,7 @@ const PokemonDetailsScreen = () => {
         { merge: true }
       );
     })();
-
     setTimeout(() => {
-      (async () => {
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
-        dispatch(
-          setPokemons(
-            pokemons.map((pokemon) =>
-              docSnap.data().saved.includes(pokemon)
-                ? { ...pokemon, isSaved: true }
-                : { ...pokemon, isSaved: false }
-            )
-          )
-        );
-      })();
       setDisplayMessage(false);
     }, 1000);
   };
@@ -86,7 +77,7 @@ const PokemonDetailsScreen = () => {
       >
         <XCircleIcon size={50} color="green" />
       </TouchableOpacity>
-      {isTouched ? (
+      {names?.includes(name) ? (
         <TouchableOpacity
           className="absolute top-4 left-4"
           onPress={addPokemon}
