@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import PokemonDetails from "../components/PokemonDetails";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons, setPokemons } from "../slices/pokemonsSlice";
+import { getPokemons } from "../slices/pokemonsSlice";
 import { getPokemon, setPokemon } from "../slices/pokemonSlice";
 import { CheckIcon, PlusIcon, XCircleIcon } from "react-native-heroicons/solid";
 import PokemonStats from "../components/PokemonStats";

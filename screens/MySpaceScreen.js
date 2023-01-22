@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { getAuth } from "firebase/auth";
 import app from "../firebaseConfig";
 import { useSelector } from "react-redux";

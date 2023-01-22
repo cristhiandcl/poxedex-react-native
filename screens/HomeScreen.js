@@ -10,7 +10,7 @@ import {
   Image,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeftOnRectangleIcon } from "react-native-heroicons/solid";
 import app from "../firebaseConfig";

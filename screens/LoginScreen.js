@@ -20,13 +20,7 @@ import { useNavigation } from "@react-navigation/native";
 import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 import { KEYS } from "../keys";
-import {
-  addDoc,
-  collection,
-  doc,
-  getFirestore,
-  setDoc,
-} from "firebase/firestore";
+import { doc, getFirestore, setDoc } from "firebase/firestore";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
