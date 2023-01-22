@@ -34,12 +34,10 @@ const MySpaceScreen = () => {
       onPress={() => navigation.push("PokemonDetails", { name: pokemon.name })}
       className="items-center justify-center"
     >
-      {/* <View > */}
       <Image
         className={pokemons.length > 1 ? "h-[180] w-[180]" : "h-[260] w-[260]"}
         source={{
           uri: pokemon?.sprites.other["official-artwork"].front_default,
-          // priority: FastImage.priority.high,
         }}
       />
       <Text className="text-gray-300 font-extrabold text-xs text-center">
@@ -48,7 +46,6 @@ const MySpaceScreen = () => {
       <Text className="text-black font-extrabold text-center mb-8">
         {pokemon?.name[0].toUpperCase() + pokemon?.name.slice(1)}
       </Text>
-      {/* </View> */}
     </TouchableOpacity>
   ));
 
