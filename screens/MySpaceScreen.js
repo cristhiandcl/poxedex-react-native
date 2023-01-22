@@ -22,16 +22,21 @@ const MySpaceScreen = () => {
       const docSnap = await getDoc(docRef);
       setSavedPokemons(docSnap.data().saved);
     })();
-  }, []);
+  }, [onChange]);
 
+  console.log(savedPokemons);
   const pokemons = useSelector(getPokemons).filter((pokemon) =>
     savedPokemons.includes(pokemon.name)
   );
 
+  const onChange = (pokemon) => {
+    navigation.push("PokemonDetails", { name: pokemon.name });
+  };
+
   const renderPokemons = pokemons?.map((pokemon) => (
     <TouchableOpacity
       key={pokemon.id}
-      onPress={() => navigation.push("PokemonDetails", { name: pokemon.name })}
+      onPress={() => onChange(pokemon)}
       className="items-center justify-center"
     >
       <Image

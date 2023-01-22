@@ -51,8 +51,6 @@ const PokemonDetailsScreen = () => {
     : "Removed from your Pokedex";
 
   const addPokemon = () => {
-    setDisplayMessage(true);
-
     (async () => {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
@@ -66,9 +64,10 @@ const PokemonDetailsScreen = () => {
         { merge: true }
       );
     })();
+    setDisplayMessage(true);
     setTimeout(() => {
       setDisplayMessage(false);
-    }, 1000);
+    }, 800);
   };
 
   return (

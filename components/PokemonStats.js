@@ -6,9 +6,10 @@ import ProgressBar from "./ProgressBar";
 
 const PokemonStats = () => {
   const pokemon = useSelector(getPokemon);
-  const max = Math.max(...pokemon.stats.map((stat) => stat.base_stat));
+  const max =
+    pokemon.stats && Math.max(...pokemon.stats?.map((stat) => stat.base_stat));
 
-  const RenderStats = pokemon.stats.map((stat, index) => (
+  const RenderStats = pokemon.stats?.map((stat, index) => (
     <View className="items-center w-screen px-10" key={index}>
       <Text className="font-extrabold text-lg">
         {stat.stat.name.includes("-")
