@@ -101,7 +101,8 @@ const PokemonDetailsScreen = () => {
       )}
       <View className="items-center mt-16">
         <Text className="text-5xl font-extrabold p-0">
-          {pokemon?.name[0]?.toUpperCase() + pokemon.name.slice(1)}
+          {pokemon.name &&
+            pokemon?.name[0].toUpperCase() + pokemon.name.slice(1)}
         </Text>
         <Text className="text-gray-300 font-extrabold text-lg text-center p-0">
           N.°{pokemon?.id}
@@ -111,7 +112,9 @@ const PokemonDetailsScreen = () => {
         <View className="items-center justify-center space-y-8">
           <Image
             source={{
-              uri: pokemon?.sprites.other["official-artwork"].front_default,
+              uri:
+                pokemon.name &&
+                pokemon?.sprites.other["official-artwork"].front_default,
             }}
             className="w-80 h-80"
           />
