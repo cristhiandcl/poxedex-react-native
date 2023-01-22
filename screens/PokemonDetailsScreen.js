@@ -16,6 +16,7 @@ const db = getFirestore(app);
 const PokemonDetailsScreen = () => {
   const navigation = useNavigation();
   const pokemons = useSelector(getPokemons);
+  const [isTouched, setIsTouched] = useState(false);
   const dispatch = useDispatch();
   const pokemon = useSelector(getPokemon);
   const [displayMessage, setDisplayMessage] = useState(false);

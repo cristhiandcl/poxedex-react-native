@@ -1,18 +1,37 @@
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { getAuth } from "firebase/auth";
 import app from "../firebaseConfig";
 import { useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeftCircleIcon } from "react-native-heroicons/solid";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 const auth = getAuth(app);
+const db = getFirestore(app);
+
 const MySpaceScreen = () => {
   const navigation = useNavigation();
   const user = auth.currentUser;
-  const pokemons = useSelector(getPokemons).filter(
-    (pokemon) => pokemon.isSaved
+  const [savedPokemons, setSavedPokemons] = useState([]);
+
+  useMemo(() => {
+    (async () => {
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("Data Fetched");
+        setSavedPokemons(docSnap.data().saved);
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    })();
+  }, [pokemons]);
+  const pokemons = useSelector(getPokemons).filter((pokemon) =>
+    savedPokemons.includes(pokemon.name)
   );
 
   const renderPokemons = pokemons?.map((pokemon) => (

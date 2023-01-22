@@ -10,28 +10,51 @@ import {
   Image,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeftOnRectangleIcon } from "react-native-heroicons/solid";
 import app from "../firebaseConfig";
 import { getAuth, signOut } from "firebase/auth";
 import Pokemons from "../components/Pokemons";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons } from "../slices/pokemonsSlice";
+import { getPokemons, setPokemons } from "../slices/pokemonsSlice";
 import Input from "../components/Input";
 import ClearSearch from "../components/ClearSearch";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 const HomeScreen = () => {
   const user = auth.currentUser;
   const navigation = useNavigation();
   const dispatch = useDispatch();
-
-  const [isTouched, setIsTouched] = useState(false);
   const [message, setMessage] = useState(true);
 
   const pokemons = useSelector(getPokemons);
+
+  useMemo(() => {
+    (async () => {
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("Data Fetched");
+        dispatch(
+          setPokemons(
+            pokemons.map((pokemon) =>
+              docSnap.data().saved?.includes(pokemon.name)
+                ? { ...pokemon, isSaved: true }
+                : pokemon
+            )
+          )
+        );
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    })();
+  }, []);
 
   const signOutButton = () => {
     signOut(auth)
