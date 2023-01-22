@@ -24,7 +24,7 @@ const PokemonDetailsScreen = () => {
   const navigation = useNavigation();
   const pokemons = useSelector(getPokemons);
   const pokemon = useSelector(getPokemon);
-  const [names, setNames] = useState();
+  const [names, setNames] = useState([]);
   const dispatch = useDispatch();
   const [displayMessage, setDisplayMessage] = useState(false);
   const {
@@ -36,13 +36,15 @@ const PokemonDetailsScreen = () => {
     dispatch(
       setPokemon(pokemons?.filter((pokemon) => pokemon.name === name)[0])
     );
+  }, []);
 
+  useEffect(() => {
     (async () => {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
       setNames(docSnap.data().saved);
     })();
-  }, [addPokemon, name]);
+  }, [displayMessage]);
 
   const alert = !names?.includes(name)
     ? "Added to your Pokedex"
