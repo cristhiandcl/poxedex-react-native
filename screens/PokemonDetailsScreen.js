@@ -32,13 +32,13 @@ const PokemonDetailsScreen = () => {
   } = useRoute();
   const user = getAuth(app).currentUser;
 
-  useMemo(() => {
+  useEffect(() => {
     dispatch(
       setPokemon(pokemons?.filter((pokemon) => pokemon.name === name)[0])
     );
   }, []);
 
-  useEffect(() => {
+  useMemo(() => {
     (async () => {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);

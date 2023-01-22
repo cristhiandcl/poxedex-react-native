@@ -20,16 +20,10 @@ const MySpaceScreen = () => {
     (async () => {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        console.log("Data Fetched");
-        setSavedPokemons(docSnap.data().saved);
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
+      setSavedPokemons(docSnap.data().saved);
     })();
-  }, [pokemons]);
+  }, []);
+
   const pokemons = useSelector(getPokemons).filter((pokemon) =>
     savedPokemons.includes(pokemon.name)
   );
