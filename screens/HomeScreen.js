@@ -10,7 +10,7 @@ import {
   Image,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import React, { useEffect, useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeftOnRectangleIcon } from "react-native-heroicons/solid";
 import app from "../firebaseConfig";
@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
 import Input from "../components/Input";
 import ClearSearch from "../components/ClearSearch";
+import Pokemon from "../components/Pokemon";
 
 const auth = getAuth(app);
 
@@ -27,7 +28,7 @@ const HomeScreen = () => {
   const user = auth.currentUser;
   const navigation = useNavigation();
   const [message, setMessage] = useState(true);
-
+  let [renderFullPokemons, setRenderFullPokemons] = useState([]);
   const pokemons = useSelector(getPokemons);
 
   const signOutButton = () => {
@@ -41,10 +42,13 @@ const HomeScreen = () => {
       });
   };
 
-  useEffect(() => {
+  useMemo(() => {
     setTimeout(() => {
       setMessage(false);
     }, 8000);
+    setRenderFullPokemons(
+      pokemons?.map((pokemon) => <Pokemon pokemon={pokemon} key={pokemon.id} />)
+    );
   }, []);
 
   return (
@@ -101,7 +105,7 @@ const HomeScreen = () => {
           <Input />
         </View>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <Pokemons pokemons={pokemons} />
+          <Pokemons renderFullPokemons={renderFullPokemons} />
         </ScrollView>
         <ClearSearch />
       </SafeAreaView>

@@ -1,31 +1,34 @@
 import { View } from "react-native";
-import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { getPokemons } from "../slices/pokemonsSlice";
 import Pokemon from "./Pokemon";
+import { getPokemon } from "../slices/filterPokemonSlice";
 
 // const client = axios.create({
 //   baseURL: "",
 // });
 
-const Pokemons = () => {
-  const pokemons = useSelector(getPokemons);
-
-  const renderPokemons = pokemons?.map((pokemon) => (
-    <Pokemon pokemon={pokemon} key={pokemon.id} />
-  ));
+const Pokemons = ({ renderFullPokemons }) => {
+  const filteredPokemon = useSelector(getPokemon);
 
   return (
-    <View
-      className={
-        pokemons.length > 1
-          ? "items-center justify-between px-4 flex-row flex-wrap"
-          : pokemons?.length <= 1 &&
-            "flex-col items-center justify-center mt-20"
-      }
-    >
-      {renderPokemons}
+    <View>
+      <View
+        className={`flex-col items-center justify-center mt-20 ${
+          filteredPokemon.length > 0 ? "blocked" : "hidden"
+        }`}
+      >
+        {filteredPokemon?.map((pokemon) => (
+          <Pokemon pokemon={pokemon} key={pokemon.id} />
+        ))}
+      </View>
+      <View
+        className={`items-center justify-between px-4 flex-row flex-wrap ${
+          filteredPokemon.length > 0 ? "hidden" : "block"
+        }`}
+      >
+        {renderFullPokemons}
+      </View>
     </View>
   );
 };

@@ -10,7 +10,7 @@ import { Provider, useDispatch } from "react-redux";
 import { setPokemons } from "./slices/pokemonsSlice";
 import PokemonDetailsScreen from "./screens/PokemonDetailsScreen";
 import MySpaceScreen from "./screens/MySpaceScreen";
-import { pokemonsData } from "./pokemonsData";
+import { pokemons as pokemonsData } from "./pokemonsDataModify";
 
 // const client = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
 
@@ -27,19 +27,7 @@ function AppWrapper() {
     //     const response = await client.get(`pokemon/${i}`);
     //     tempPokemons.push(response.data);
     //   }
-    dispatch(
-      setPokemons(
-        pokemonsData.map((pokemon) => ({
-          ...pokemon,
-          isSaved: false,
-          name: pokemon.name.includes("mr")
-            ? pokemon.name
-            : pokemon.name.includes("-")
-            ? pokemon.name.split("-")[0]
-            : pokemon.name,
-        }))
-      )
-    );
+    dispatch(setPokemons(pokemonsData));
     // })();
   }, []);
 

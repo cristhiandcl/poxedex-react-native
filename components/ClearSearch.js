@@ -3,19 +3,20 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemons, setPokemons } from "../slices/pokemonsSlice";
 import * as Animatable from "react-native-animatable";
-import { pokemonsData } from "../pokemonsData";
+import { pokemons as pokemonsData } from "../pokemonsDataModify";
+import { getPokemon, setPokemon } from "../slices/filterPokemonSlice";
 
 const ClearSearch = () => {
-  const pokemons = useSelector(getPokemons);
+  const filteredPokemon = useSelector(getPokemon);
   const dispatch = useDispatch();
 
   const clearFilter = () => {
-    dispatch(setPokemons(pokemonsData));
+    dispatch(setPokemon([]));
   };
 
   return (
     <View>
-      {pokemons.length <= 1 && (
+      {filteredPokemon.length === 1 && (
         <Animatable.View animation="fadeInDownBig" className="mb-12">
           <TouchableOpacity
             className="w-1/4 rounded-full p-2 self-center bg-green-700"

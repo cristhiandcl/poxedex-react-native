@@ -13,7 +13,7 @@ import {
   getFirestore,
   setDoc,
 } from "firebase/firestore";
-import { useEffect } from "react";
+// import { pokemons as pokemonsData } from "./pokemonsDataModify";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -24,7 +24,7 @@ const MySpaceScreen = () => {
   const [savedPokemons, setSavedPokemons] = useState([]);
   const [isChanged, setIsChanged] = useState(false);
 
-  useEffect(() => {
+  useMemo(() => {
     (async () => {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
