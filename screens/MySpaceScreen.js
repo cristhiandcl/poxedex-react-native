@@ -33,7 +33,7 @@ const MySpaceScreen = () => {
   }, [isChanged]);
 
   const pokemons = useSelector(getPokemons).filter((pokemon) =>
-    savedPokemons.includes(pokemon.name)
+    savedPokemons?.includes(pokemon.name)
   );
 
   const onChange = (pokemon) => {

@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  Platform,
+} from "react-native";
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import PokemonDetails from "../components/PokemonDetails";
@@ -57,7 +64,7 @@ const PokemonDetailsScreen = () => {
       await setDoc(
         doc(db, "users", user.uid),
         {
-          saved: docSnap.data().saved.includes(name)
+          saved: docSnap.data().saved?.includes(name)
             ? arrayRemove(name)
             : arrayUnion(name),
         },
@@ -73,7 +80,11 @@ const PokemonDetailsScreen = () => {
   return (
     <View className="relative h-full pb-12">
       <TouchableOpacity
-        className="absolute top-4 right-4"
+        className={
+          Platform.OS === "ios"
+            ? "absolute top-4 right-4"
+            : "absolute top-10 right-4"
+        }
         onPress={navigation.goBack}
       >
         <XCircleIcon size={50} color="green" />
@@ -81,14 +92,22 @@ const PokemonDetailsScreen = () => {
       {!onUserScreen &&
         (names?.includes(name) ? (
           <TouchableOpacity
-            className="absolute top-4 left-4"
+            className={
+              Platform.OS === "ios"
+                ? "absolute top-4 left-4"
+                : "absolute top-10 left-4"
+            }
             onPress={addPokemon}
           >
             <CheckIcon size={45} color="green" />
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
-            className="absolute top-4 left-4"
+            className={
+              Platform.OS === "ios"
+                ? "absolute top-4 left-4"
+                : "absolute top-10 left-4"
+            }
             onPress={addPokemon}
           >
             <PlusIcon size={45} color="gray" />

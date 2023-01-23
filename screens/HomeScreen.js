@@ -58,7 +58,7 @@ const HomeScreen = () => {
           Platform.OS === "android" && "mt-8"
         } py-4 space-y-7`}
       >
-        {Platform.OS === "ios" ? (
+        {Platform.OS === "ios" && (
           <View className="absolute flex-row top-14 mx-4">
             <TouchableOpacity onPress={signOutButton} className="flex-1">
               <ArrowLeftOnRectangleIcon size={40} color="green" />
@@ -74,18 +74,13 @@ const HomeScreen = () => {
               />
             </TouchableOpacity>
           </View>
-        ) : (
-          <TouchableOpacity
-            onPress={signOutButton}
-            className="absolute top-10 right-4"
-          >
-            <ArrowLeftOnRectangleIcon size={40} color="green" />
-          </TouchableOpacity>
         )}
         {message ? (
           <Animatable.Text
             animation="slideInUp"
-            className="font-extrabold text-xs text-center pt-12 text-gray-400 mx-8"
+            className={`font-extrabold text-xs text-center ${
+              Platform.OS === "ios" ? "pt-12" : "pt-16"
+            } text-gray-400 mx-8`}
           >
             Welcome{" "}
             <Text className="text-sm text-green-700">
@@ -100,6 +95,23 @@ const HomeScreen = () => {
           <Text className="font-extrabold text-5xl text-center pt-12 text-green-700">
             Pokedex
           </Text>
+        )}
+        {Platform.OS === "android" && (
+          <View className="absolute flex-row top-0 mx-4">
+            <TouchableOpacity onPress={signOutButton} className="flex-1">
+              <ArrowLeftOnRectangleIcon size={40} color="green" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("MySpace")}>
+              <Image
+                source={
+                  user?.photoURL
+                    ? { uri: user?.photoURL }
+                    : require("../assets/user.png")
+                }
+                className="h-10 w-10 rounded-full self-center"
+              />
+            </TouchableOpacity>
+          </View>
         )}
         <View>
           <Input />
