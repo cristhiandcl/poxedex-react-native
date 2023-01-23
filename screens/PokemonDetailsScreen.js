@@ -31,7 +31,6 @@ const PokemonDetailsScreen = () => {
     params: { name, onUserScreen },
   } = useRoute();
   const user = getAuth(app).currentUser;
-  console.log(onUserScreen);
 
   useEffect(() => {
     dispatch(
@@ -79,21 +78,22 @@ const PokemonDetailsScreen = () => {
       >
         <XCircleIcon size={50} color="green" />
       </TouchableOpacity>
-      {names?.includes(name) ? (
-        <TouchableOpacity
-          className="absolute top-4 left-4"
-          onPress={addPokemon}
-        >
-          <CheckIcon size={45} color="green" />
-        </TouchableOpacity>
-      ) : (
-        <TouchableOpacity
-          className="absolute top-4 left-4"
-          onPress={addPokemon}
-        >
-          <PlusIcon size={45} color="gray" />
-        </TouchableOpacity>
-      )}
+      {!onUserScreen &&
+        (names?.includes(name) ? (
+          <TouchableOpacity
+            className="absolute top-4 left-4"
+            onPress={addPokemon}
+          >
+            <CheckIcon size={45} color="green" />
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            className="absolute top-4 left-4"
+            onPress={addPokemon}
+          >
+            <PlusIcon size={45} color="gray" />
+          </TouchableOpacity>
+        ))}
       {displayMessage && (
         <View className="items-center z-10">
           <Text className="font-extrabold absolute top-80 text-lg text-red-600">

@@ -39,7 +39,7 @@ const MySpaceScreen = () => {
   const onChange = (pokemon) => {
     navigation.push("PokemonDetails", {
       name: pokemon.name,
-      onUserScreen: "yes",
+      onUserScreen: true,
     });
   };
 

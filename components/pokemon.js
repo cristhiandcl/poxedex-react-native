@@ -11,7 +11,12 @@ function Pokemon({ pokemon }) {
   return (
     <TouchableOpacity
       // key={pokemon.id}
-      onPress={() => navigation.push("PokemonDetails", { name: pokemon.name })}
+      onPress={() =>
+        navigation.push("PokemonDetails", {
+          name: pokemon.name,
+          onUserScreen: false,
+        })
+      }
       className="items-center justify-center"
     >
       {/* <View > */}
