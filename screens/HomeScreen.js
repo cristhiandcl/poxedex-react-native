@@ -93,11 +93,9 @@ const HomeScreen = () => {
             <Text className="text-red-700 text-sm">poxedex</Text>
           </Animatable.Text>
         ) : (
-          // <View className="mt-12">
           <Text className="font-extrabold text-5xl text-center pt-12 text-green-700">
             Pokedex
           </Text>
-          // </View>
         )}
         <View>
           <Input />

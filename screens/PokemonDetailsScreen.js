@@ -28,9 +28,10 @@ const PokemonDetailsScreen = () => {
   const dispatch = useDispatch();
   const [displayMessage, setDisplayMessage] = useState(false);
   const {
-    params: { name },
+    params: { name, onUserScreen },
   } = useRoute();
   const user = getAuth(app).currentUser;
+  console.log(onUserScreen);
 
   useEffect(() => {
     dispatch(

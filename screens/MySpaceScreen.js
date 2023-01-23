@@ -37,7 +37,10 @@ const MySpaceScreen = () => {
   );
 
   const onChange = (pokemon) => {
-    navigation.push("PokemonDetails", { name: pokemon.name });
+    navigation.push("PokemonDetails", {
+      name: pokemon.name,
+      onUserScreen: "yes",
+    });
   };
 
   const deletePokemon = (name) => {
