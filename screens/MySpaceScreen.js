@@ -57,10 +57,10 @@ const MySpaceScreen = () => {
     <TouchableOpacity
       key={pokemon.id}
       onPress={() => onChange(pokemon)}
-      className="items-center border justify-starttify-center relative mb-6"
+      className="items-center bg-gray-200 justify-starttify-center relative mb-6 rounded-xl p-4"
     >
       <TouchableOpacity
-        className="absolute right-2 bottom-2"
+        className="absolute right-3 bottom-3"
         onPress={() => deletePokemon(pokemon.name)}
       >
         <TrashIcon size={30} color="green" />
