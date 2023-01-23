@@ -5,7 +5,7 @@ import app from "../firebaseConfig";
 import { useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
 import { useNavigation } from "@react-navigation/native";
-import { ArrowLeftCircleIcon } from "react-native-heroicons/solid";
+import { ArrowLeftCircleIcon, TrashIcon } from "react-native-heroicons/solid";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 const auth = getAuth(app);
@@ -24,7 +24,6 @@ const MySpaceScreen = () => {
     })();
   }, [onChange]);
 
-  console.log(savedPokemons);
   const pokemons = useSelector(getPokemons).filter((pokemon) =>
     savedPokemons.includes(pokemon.name)
   );
@@ -37,8 +36,11 @@ const MySpaceScreen = () => {
     <TouchableOpacity
       key={pokemon.id}
       onPress={() => onChange(pokemon)}
-      className="items-center justify-center"
+      className="items-center border justify-center"
     >
+      <TouchableOpacity>
+        <TrashIcon />
+      </TouchableOpacity>
       <Image
         className={pokemons.length > 1 ? "h-[180] w-[180]" : "h-[260] w-[260]"}
         source={{
