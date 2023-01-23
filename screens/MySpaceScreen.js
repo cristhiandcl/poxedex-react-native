@@ -36,10 +36,13 @@ const MySpaceScreen = () => {
     <TouchableOpacity
       key={pokemon.id}
       onPress={() => onChange(pokemon)}
-      className="items-center border justify-center"
+      className="items-center border justify-starttify-center relative mb-6"
     >
-      <TouchableOpacity>
-        <TrashIcon />
+      <TouchableOpacity
+        className="absolute right-2 bottom-2"
+        onPress={() => console.log("pressed")}
+      >
+        <TrashIcon size={30} color="green" />
       </TouchableOpacity>
       <Image
         className={pokemons.length > 1 ? "h-[180] w-[180]" : "h-[260] w-[260]"}
