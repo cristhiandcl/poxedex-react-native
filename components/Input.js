@@ -10,7 +10,7 @@ import { MagnifyingGlassCircleIcon } from "react-native-heroicons/solid";
 import { useDispatch, useSelector } from "react-redux";
 import * as Animatable from "react-native-animatable";
 import { getPokemons } from "../slices/pokemonsSlice";
-import { getPokemon, setPokemon } from "../slices/filterPokemonSlice";
+import { setPokemon } from "../slices/filterPokemonSlice";
 
 const Input = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,6 @@ const Input = () => {
   const pokemons = useSelector(getPokemons);
   const wrongAnswer = "You must type down a valid Pokemon's name";
   const names = pokemons.map((pokemon) => pokemon.name);
-  const filtered = useSelector(getPokemon);
 
   const filterPokemons = () => {
     if (names.includes(pokemonName.toLowerCase().trim())) {
@@ -40,8 +39,6 @@ const Input = () => {
       }, 3000);
     }
   };
-
-  console.log(filtered);
 
   const onChange = (value) => {
     onChangeText(value);
