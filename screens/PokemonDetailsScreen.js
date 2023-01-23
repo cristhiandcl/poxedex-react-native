@@ -121,6 +121,9 @@ const PokemonDetailsScreen = () => {
             className="w-80 h-80"
           />
           <View>
+            <Text className="font-extrabold text-center text-3xl mb-4">
+              About
+            </Text>
             <PokemonDetails />
           </View>
           <View>
