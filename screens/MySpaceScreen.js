@@ -6,7 +6,14 @@ import { useSelector } from "react-redux";
 import { getPokemons } from "../slices/pokemonsSlice";
 import { useNavigation } from "@react-navigation/native";
 import { ArrowLeftCircleIcon, TrashIcon } from "react-native-heroicons/solid";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
+import {
+  arrayRemove,
+  doc,
+  getDoc,
+  getFirestore,
+  setDoc,
+} from "firebase/firestore";
+import { useEffect } from "react";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -15,14 +22,15 @@ const MySpaceScreen = () => {
   const navigation = useNavigation();
   const user = auth.currentUser;
   const [savedPokemons, setSavedPokemons] = useState([]);
+  const [isChanged, setIsChanged] = useState(false);
 
-  useMemo(() => {
+  useEffect(() => {
     (async () => {
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
       setSavedPokemons(docSnap.data().saved);
     })();
-  }, [onChange]);
+  }, [isChanged]);
 
   const pokemons = useSelector(getPokemons).filter((pokemon) =>
     savedPokemons.includes(pokemon.name)
@@ -30,6 +38,19 @@ const MySpaceScreen = () => {
 
   const onChange = (pokemon) => {
     navigation.push("PokemonDetails", { name: pokemon.name });
+  };
+
+  const deletePokemon = (name) => {
+    (async () => {
+      await setDoc(
+        doc(db, "users", user.uid),
+        {
+          saved: arrayRemove(name),
+        },
+        { merge: true }
+      );
+      setIsChanged(!isChanged);
+    })();
   };
 
   const renderPokemons = pokemons?.map((pokemon) => (
@@ -40,7 +61,7 @@ const MySpaceScreen = () => {
     >
       <TouchableOpacity
         className="absolute right-2 bottom-2"
-        onPress={() => console.log("pressed")}
+        onPress={() => deletePokemon(pokemon.name)}
       >
         <TrashIcon size={30} color="green" />
       </TouchableOpacity>
