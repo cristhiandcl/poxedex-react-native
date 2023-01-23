@@ -29,7 +29,15 @@ function AppWrapper() {
     //   }
     dispatch(
       setPokemons(
-        pokemonsData.map((pokemon) => ({ ...pokemon, isSaved: false }))
+        pokemonsData.map((pokemon) => ({
+          ...pokemon,
+          isSaved: false,
+          name: pokemon.name.includes("mr")
+            ? pokemon.name
+            : pokemon.name.includes("-")
+            ? pokemon.name.split("-")[0]
+            : pokemon.name,
+        }))
       )
     );
     // })();
