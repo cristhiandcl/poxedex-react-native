@@ -28,3 +28,30 @@ Try it on Expo Go
 
 ![image](https://user-images.githubusercontent.com/83930705/214144022-3348e549-f60c-41f6-a687-5343143964bd.png)
 
+## `Login Screen`
+![IMG-0592](https://user-images.githubusercontent.com/83930705/214380533-485428a1-6971-49c7-9d50-4e1b75bb8128.png)
+
+## `Sign in Screen`
+
+![IMG-0593](https://user-images.githubusercontent.com/83930705/214380572-716fd0f9-7579-44d5-946f-c8a86ecd8c09.png)
+![IMG-0594](https://user-images.githubusercontent.com/83930705/214380654-f1257423-a7d7-4ad6-963f-a672e941320e.png)
+
+## `Main Screen`
+![IMG-0595](https://user-images.githubusercontent.com/83930705/214380729-36630d4e-7b40-45c8-8252-192d5a18a866.png)
+![IMG-0596](https://user-images.githubusercontent.com/83930705/214380798-1bed6385-b85e-40f5-9716-31bc719ddd65.png)
+
+## `Filtering a Pokemon`
+
+![IMG-0597](https://user-images.githubusercontent.com/83930705/214380895-ce885459-32a0-47b5-a794-eccde4a68d51.png)
+
+
+## `Pokemon details Screen`
+
+![IMG-0598](https://user-images.githubusercontent.com/83930705/214380925-f373798e-ea32-4361-aebf-d8421e68d93f.png)
+
+## `User Screen`
+![IMG-0599](https://user-images.githubusercontent.com/83930705/214381010-eab9fd7f-5371-4d87-a467-5cdfb729cab1.png)
+
+## `Pokemon Screen from user Screen`
+![IMG-0600](https://user-images.githubusercontent.com/83930705/214381092-d288037d-3ab4-4fba-ac10-81d84f5ec4ac.png)
+
