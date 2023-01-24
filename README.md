@@ -47,11 +47,14 @@ Try it on Expo Go
 ## `Pokemon details Screen`
 
 ![image](https://user-images.githubusercontent.com/83930705/214383277-acfe4dfa-b3e4-4a19-9773-46e86c0c399c.png)
+![image](https://user-images.githubusercontent.com/83930705/214384631-a3aa2169-4332-4e3f-864c-5dab87e679c5.png)
+
 
 ## `User Screen`
 ![image](https://user-images.githubusercontent.com/83930705/214383452-76e9748d-09a5-44c9-bead-4b91bb635ea3.png)
 
 ## `Pokemon Screen from user Screen`
 ![image](https://user-images.githubusercontent.com/83930705/214383607-c7e19f02-84ac-4aed-a924-33b8e891b387.png)
+![image](https://user-images.githubusercontent.com/83930705/214386518-f4ddfdce-77a1-4ff9-a799-6d0f5e9580b6.png)
 
 
