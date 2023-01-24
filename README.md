@@ -29,29 +29,29 @@ Try it on Expo Go
 ![image](https://user-images.githubusercontent.com/83930705/214144022-3348e549-f60c-41f6-a687-5343143964bd.png)
 
 ## `Login Screen`
-![IMG-0592](https://user-images.githubusercontent.com/83930705/214380533-485428a1-6971-49c7-9d50-4e1b75bb8128.png)
+![image](https://user-images.githubusercontent.com/83930705/214382397-b8d7f0a8-c7ec-4152-a4bc-4e412d529ddc.png)
 
 ## `Sign in Screen`
-
-![IMG-0593](https://user-images.githubusercontent.com/83930705/214380572-716fd0f9-7579-44d5-946f-c8a86ecd8c09.png)
-![IMG-0594](https://user-images.githubusercontent.com/83930705/214380654-f1257423-a7d7-4ad6-963f-a672e941320e.png)
+![image](https://user-images.githubusercontent.com/83930705/214382543-6b4e1c66-ed95-4710-aefd-5da25957f63a.png)
+![image](https://user-images.githubusercontent.com/83930705/214382670-e2d9c03b-6cd0-4221-ba3f-8cec53f7c50e.png)
 
 ## `Main Screen`
-![IMG-0595](https://user-images.githubusercontent.com/83930705/214380729-36630d4e-7b40-45c8-8252-192d5a18a866.png)
-![IMG-0596](https://user-images.githubusercontent.com/83930705/214380798-1bed6385-b85e-40f5-9716-31bc719ddd65.png)
+![image](https://user-images.githubusercontent.com/83930705/214382785-794a33f9-3391-4585-afc5-bce83a7fd67c.png)
+![image](https://user-images.githubusercontent.com/83930705/214382935-4301f7f8-19f8-4f30-89ec-24244b3e82d0.png)
 
 ## `Filtering a Pokemon`
 
-![IMG-0597](https://user-images.githubusercontent.com/83930705/214380895-ce885459-32a0-47b5-a794-eccde4a68d51.png)
+![image](https://user-images.githubusercontent.com/83930705/214383124-8d856ab0-84d2-4222-80b4-7031711130e6.png)
 
 
 ## `Pokemon details Screen`
 
-![IMG-0598](https://user-images.githubusercontent.com/83930705/214380925-f373798e-ea32-4361-aebf-d8421e68d93f.png)
+![image](https://user-images.githubusercontent.com/83930705/214383277-acfe4dfa-b3e4-4a19-9773-46e86c0c399c.png)
 
 ## `User Screen`
-![IMG-0599](https://user-images.githubusercontent.com/83930705/214381010-eab9fd7f-5371-4d87-a467-5cdfb729cab1.png)
+![image](https://user-images.githubusercontent.com/83930705/214383452-76e9748d-09a5-44c9-bead-4b91bb635ea3.png)
 
 ## `Pokemon Screen from user Screen`
-![IMG-0600](https://user-images.githubusercontent.com/83930705/214381092-d288037d-3ab4-4fba-ac10-81d84f5ec4ac.png)
+![image](https://user-images.githubusercontent.com/83930705/214383607-c7e19f02-84ac-4aed-a924-33b8e891b387.png)
+
 
