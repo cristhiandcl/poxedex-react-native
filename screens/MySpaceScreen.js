@@ -13,7 +13,6 @@ import {
   getFirestore,
   setDoc,
 } from "firebase/firestore";
-// import { pokemons as pokemonsData } from "./pokemonsDataModify";
 
 const auth = getAuth(app);
 const db = getFirestore(app);

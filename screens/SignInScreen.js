@@ -41,7 +41,7 @@ const SignInScreen = () => {
         updateProfile(user, {
           displayName: userData.name,
         }).then(() => {
-          Alert.alert("Sign Out", "User Created Successfully", [
+          Alert.alert("Sign In", "User Created Successfully", [
             { text: "OK", onPress: navigation.goBack },
           ]);
           (async () => {
