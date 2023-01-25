@@ -1,6 +1,6 @@
 # Welcome to the POKEDEX APP (React Native)
 
-This project was created with react native Expo CLI and styled with TailwindCss (nativeWind), this project has also a web version, first version => [Pokedex](https://cristhiandcl.github.io/pokedex-app/) and its improved one [Pokedex Remastered](https://cristhiandcl.github.io/pokedex-app-remastered/)
+This project was created with react native Expo CLI and styled with TailwindCss (nativeWind), this project has also a couple of web versions, first version => [Pokedex](https://cristhiandcl.github.io/pokedex-app/) and its improved one [Pokedex Remastered](https://cristhiandcl.github.io/pokedex-app-remastered/)
 
 ## `Libraries`
 
