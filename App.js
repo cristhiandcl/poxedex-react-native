@@ -24,6 +24,8 @@ function AppWrapper() {
     "/api/v1/pokemon_evolutions.json",
   ];
 
+  const data = useSelector(getPokemonsData);
+
   useMemo(() => {
     (async () =>
       await Promise.all(
@@ -33,7 +35,7 @@ function AppWrapper() {
       ))();
     dispatch(setPokemons(pokemonsData));
   }, []);
-
+  console.log(data);
   return (
     <NavigationContainer>
       <Stack.Navigator>

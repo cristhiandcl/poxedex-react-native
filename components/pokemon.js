@@ -5,10 +5,11 @@ import { View } from "react-native-animatable";
 import { useSelector } from "react-redux";
 import { getPokemon } from "../slices/filterPokemonSlice";
 
-function Pokemon({ pokemon, type }) {
+function Pokemon({ pokemon, types }) {
   const navigation = useNavigation();
   const filteredPokemon = useSelector(getPokemon);
-  console.log(type);
+
+  const type = types.filter((type) => type.pokemon_id === pokemon.id)[0];
 
   return (
     <TouchableOpacity
@@ -32,13 +33,16 @@ function Pokemon({ pokemon, type }) {
       <Text className="text-gray-300 font-extrabold text-xs text-center">
         N.°{pokemon?.id}
       </Text>
-      <Text className="text-black font-extrabold text-center mb-8">
+      <Text className="text-black font-extrabold text-center ">
         {pokemon?.name[0].toUpperCase() + pokemon?.name.slice(1)}
       </Text>
-      <View>
-        {type[0]?.type.map((type) => (
-          <Text key={type[0].pokemon_id}>{type}</Text>
-        ))}
+      <View className="mb-8">
+        {type?.type?.map((type) => {
+          const t = type.toLowerCase();
+          const location = "../assets/types/" + t + ".png";
+          console.log(location);
+          // return <Image source={require(location)} className="h-6 w-6" />;
+        })}
       </View>
     </TouchableOpacity>
   );

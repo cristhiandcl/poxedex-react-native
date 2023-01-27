@@ -35,7 +35,6 @@ const HomeScreen = () => {
   const filteredtypes = types?.filter(
     (type, index) => type.pokemon_name !== types[index - 1]?.pokemon_name
   );
-
   const signOutButton = () => {
     signOut(auth)
       .then(() => {
@@ -53,11 +52,7 @@ const HomeScreen = () => {
     }, 8000);
     setRenderFullPokemons(
       pokemons?.map((pokemon) => (
-        <Pokemon
-          pokemon={pokemon}
-          key={pokemon.id}
-          type={filteredtypes.filter((type) => type.pokemon_id === pokemon.id)}
-        />
+        <Pokemon pokemon={pokemon} key={pokemon.id} types={filteredtypes} />
       ))
     );
   }, []);
