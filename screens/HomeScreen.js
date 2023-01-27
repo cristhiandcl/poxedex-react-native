@@ -31,10 +31,14 @@ const HomeScreen = () => {
   const [message, setMessage] = useState(true);
   let [renderFullPokemons, setRenderFullPokemons] = useState([]);
   const pokemons = useSelector(getPokemons);
-  const types = useSelector(getPokemonsData)[0];
+  const types = useSelector(getPokemonsData).filter(
+    (elem) => elem.length === 1175
+  )[0];
   const filteredtypes = types?.filter(
     (type, index) => type.pokemon_name !== types[index - 1]?.pokemon_name
   );
+
+  console.log(types);
   const signOutButton = () => {
     signOut(auth)
       .then(() => {

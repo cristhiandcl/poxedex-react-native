@@ -40,7 +40,7 @@ function Pokemon({ pokemon, types }) {
       <View className="mb-8 flex-row">
         {type?.type?.map((type) => {
           const icon = typesImages[type.toLowerCase()].image;
-          return <Image source={icon} className="w-8 h-10" />;
+          return <Image source={icon} className="w-8 h-10" key={type} />;
         })}
       </View>
     </TouchableOpacity>
