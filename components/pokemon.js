@@ -4,6 +4,7 @@ import { Image, Text, TouchableOpacity } from "react-native";
 import { View } from "react-native-animatable";
 import { useSelector } from "react-redux";
 import { getPokemon } from "../slices/filterPokemonSlice";
+import { typesImages } from "../types";
 
 function Pokemon({ pokemon, types }) {
   const navigation = useNavigation();
@@ -36,12 +37,10 @@ function Pokemon({ pokemon, types }) {
       <Text className="text-black font-extrabold text-center ">
         {pokemon?.name[0].toUpperCase() + pokemon?.name.slice(1)}
       </Text>
-      <View className="mb-8">
+      <View className="mb-8 flex-row">
         {type?.type?.map((type) => {
-          const t = type.toLowerCase();
-          const location = "../assets/types/" + t + ".png";
-          console.log(location);
-          // return <Image source={require(location)} className="h-6 w-6" />;
+          const icon = typesImages[type.toLowerCase()].image;
+          return <Image source={icon} className="w-8 h-10" />;
         })}
       </View>
     </TouchableOpacity>

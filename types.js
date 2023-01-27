@@ -1,110 +1,92 @@
-export const types = {
+export const typesImages = {
   normal: {
     name: "normal",
     color: "bg-stone-500",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/a/aa/Pok%C3%A9mon_Normal_Type_Icon.svg",
+    image: require("./assets/types/normal.png"),
   },
   fighting: {
     name: "fighting",
     color: "bg-red-800",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/b/be/Pok%C3%A9mon_Fighting_Type_Icon.svg",
+    image: require("./assets/types/fighting.png"),
   },
   flying: {
     name: "flying",
     color: "bg-blue-200",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/e/e0/Pok%C3%A9mon_Flying_Type_Icon.svg",
+    image: require("./assets/types/flying.png"),
   },
   poison: {
     name: "poison",
     color: "bg-fuchsia-500",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/c/c4/Pok%C3%A9mon_Poison_Type_Icon.svg",
+    image: require("./assets/types/poison.png"),
   },
   ground: {
     name: "ground",
     color: "bg-yellow-100",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/8/8d/Pok%C3%A9mon_Ground_Type_Icon.svg",
+    image: require("./assets/types/ground.png"),
   },
   rock: {
     name: "rock",
     color: "bg-yellow-600",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/b/bb/Pok%C3%A9mon_Rock_Type_Icon.svg",
+    image: require("./assets/types/rock.png"),
   },
   bug: {
     name: "bug",
     color: "bg-lime-500",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/3/3c/Pok%C3%A9mon_Bug_Type_Icon.svg",
+    image: require("./assets/types/bug.png"),
   },
   ghost: {
     name: "ghost",
     color: "bg-violet-600",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/a/a0/Pok%C3%A9mon_Ghost_Type_Icon.svg",
+    image: require("./assets/types/ghost.png"),
   },
   steel: {
     name: "steel",
     color: "bg-slate-400",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/3/38/Pok%C3%A9mon_Steel_Type_Icon.svg",
+    image: require("./assets/types/steel.png"),
   },
   fire: {
     name: "fire",
     color: "bg-red-500",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/5/56/Pok%C3%A9mon_Fire_Type_Icon.svg",
+    image: require("./assets/types/fire.png"),
   },
   water: {
     name: "water",
     color: "bg-sky-500",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/0/0b/Pok%C3%A9mon_Water_Type_Icon.svg",
+    image: require("./assets/types/water.png"),
   },
   grass: {
     name: "grass",
     color: "bg-green-500",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/f/f6/Pok%C3%A9mon_Grass_Type_Icon.svg",
+    image: require("./assets/types/grass.png"),
   },
   electric: {
     name: "electric",
     color: "bg-yellow-500",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/a/a9/Pok%C3%A9mon_Electric_Type_Icon.svg",
+    image: require("./assets/types/electric.png"),
   },
   psychic: {
     name: "psychic",
     color: "bg-pink-300",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/a/ab/Pok%C3%A9mon_Psychic_Type_Icon.svg",
+    image: require("./assets/types/psychic.png"),
   },
   ice: {
     name: "ice",
     color: "bg-sky-400",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/8/88/Pok%C3%A9mon_Ice_Type_Icon.svg",
+    image: require("./assets/types/ice.png"),
   },
   dragon: {
     name: "dragon",
     color: "bg-purple-600",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/a/a6/Pok%C3%A9mon_Dragon_Type_Icon.svg",
+    image: require("./assets/types/dragon.png"),
   },
   dark: {
     name: "dark",
     color: "bg-amber-900",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/0/09/Pok%C3%A9mon_Dark_Type_Icon.svg",
+    image: require("./assets/types/dark.png"),
   },
   fairy: {
     name: "fairy",
     color: "bg-pink-200",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/0/08/Pok%C3%A9mon_Fairy_Type_Icon.svg",
+    image: require("./assets/types/fairy.png"),
   },
 };
