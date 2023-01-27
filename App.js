@@ -1,34 +1,36 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignInScreen from "./screens/SignInScreen";
 import { store } from "./store";
-import { Provider, useDispatch } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { setPokemons } from "./slices/pokemonsSlice";
 import PokemonDetailsScreen from "./screens/PokemonDetailsScreen";
 import MySpaceScreen from "./screens/MySpaceScreen";
 import { pokemons as pokemonsData } from "./pokemonsDataModify";
+import { getPokemonsData, setPokemonsData } from "./slices/pokemonsDataSlice";
 
-// const client = axios.create({ baseURL: "https://pokeapi.co/api/v2" });
+const client = axios.create({ baseURL: "https://pogoapi.net/" });
 
 function AppWrapper() {
   const Stack = createNativeStackNavigator();
 
   const dispatch = useDispatch();
-  // console.log(pokemons);
+  const urls = [
+    "/api/v1/pokemon_types.json",
+    "/api/v1/pokemon_evolutions.json",
+  ];
 
-  useEffect(() => {
-    // let tempPokemons = [];
-    // (async () => {
-    //   for (let i = 1; i <= 200; i++) {
-    //     const response = await client.get(`pokemon/${i}`);
-    //     tempPokemons.push(response.data);
-    //   }
-    dispatch(setPokemons(pokemonsData));
-    // })();
+  useMemo(() => {
+    (async () =>
+      await Promise.all(
+        urls.map((url) =>
+          client.get(url).then((res) => dispatch(setPokemonsData(res.data)))
+        )
+      ))();
   }, []);
 
   return (
