@@ -21,6 +21,7 @@ import { getPokemons } from "../slices/pokemonsSlice";
 import Input from "../components/Input";
 import ClearSearch from "../components/ClearSearch";
 import Pokemon from "../components/Pokemon";
+import { getPokemonsData } from "../slices/pokemonsDataSlice";
 
 const auth = getAuth(app);
 
@@ -30,6 +31,10 @@ const HomeScreen = () => {
   const [message, setMessage] = useState(true);
   let [renderFullPokemons, setRenderFullPokemons] = useState([]);
   const pokemons = useSelector(getPokemons);
+  const types = useSelector(getPokemonsData)[0];
+  const filteredtypes = types?.filter(
+    (type, index) => type.pokemon_name !== types[index - 1]?.pokemon_name
+  );
 
   const signOutButton = () => {
     signOut(auth)
@@ -47,7 +52,13 @@ const HomeScreen = () => {
       setMessage(false);
     }, 8000);
     setRenderFullPokemons(
-      pokemons?.map((pokemon) => <Pokemon pokemon={pokemon} key={pokemon.id} />)
+      pokemons?.map((pokemon) => (
+        <Pokemon
+          pokemon={pokemon}
+          key={pokemon.id}
+          type={filteredtypes.filter((type) => type.pokemon_id === pokemon.id)}
+        />
+      ))
     );
   }, []);
 

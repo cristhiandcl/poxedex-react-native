@@ -31,6 +31,7 @@ function AppWrapper() {
           client.get(url).then((res) => dispatch(setPokemonsData(res.data)))
         )
       ))();
+    dispatch(setPokemons(pokemonsData));
   }, []);
 
   return (
