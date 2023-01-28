@@ -26,6 +26,7 @@ import app from "../firebaseConfig";
 import { getAuth } from "firebase/auth";
 import { typesImages } from "../types";
 import { getPokemonsData } from "../slices/pokemonsDataSlice";
+import Evolution from "../components/Evolution";
 
 const db = getFirestore(app);
 
@@ -173,7 +174,13 @@ const PokemonDetailsScreen = () => {
                 })}
               </View>
             </View>
-            <PokemonStats />
+          </View>
+          <PokemonStats />
+          <View>
+            <Text className="font-extrabold text-center text-3xl mb-4">
+              Evolution
+            </Text>
+            <Evolution name={name} />
           </View>
         </View>
       </ScrollView>
