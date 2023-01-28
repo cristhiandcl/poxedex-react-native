@@ -24,6 +24,8 @@ import {
 } from "firebase/firestore";
 import app from "../firebaseConfig";
 import { getAuth } from "firebase/auth";
+import { typesImages } from "../types";
+import { getPokemonsData } from "../slices/pokemonsDataSlice";
 
 const db = getFirestore(app);
 
@@ -38,6 +40,18 @@ const PokemonDetailsScreen = () => {
     params: { name, onUserScreen },
   } = useRoute();
   const user = getAuth(app).currentUser;
+
+  const types = useSelector(getPokemonsData).filter(
+    (elem) => elem.length === 1175
+  )[0];
+
+  const filteredtypes = types?.filter(
+    (type, index) => type.pokemon_name !== types[index - 1]?.pokemon_name
+  );
+
+  const type = filteredtypes?.filter(
+    (type) => type.pokemon_id === pokemon.id
+  )[0];
 
   useEffect(() => {
     dispatch(
@@ -146,6 +160,19 @@ const PokemonDetailsScreen = () => {
             <PokemonDetails />
           </View>
           <View>
+            <View>
+              <Text className="font-extrabold text-center text-3xl mb-4">
+                Type
+              </Text>
+              <View className="mb-8 flex-row mx-auto space-x-4">
+                {type?.type?.map((type) => {
+                  const icon = typesImages[type.toLowerCase()].image;
+                  return (
+                    <Image source={icon} className="w-16 h-20" key={type} />
+                  );
+                })}
+              </View>
+            </View>
             <PokemonStats />
           </View>
         </View>
