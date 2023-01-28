@@ -5,10 +5,6 @@ import Pokemon from "./Pokemon";
 import { getPokemon } from "../slices/filterPokemonSlice";
 import { getPokemonsData } from "../slices/pokemonsDataSlice";
 
-// const client = axios.create({
-//   baseURL: "",
-// });
-
 const Pokemons = ({ renderFullPokemons }) => {
   const filteredPokemon = useSelector(getPokemon);
   const types = useSelector(getPokemonsData).filter(
@@ -22,7 +18,7 @@ const Pokemons = ({ renderFullPokemons }) => {
   return (
     <View>
       <View
-        className={`flex-col items-center justify-center mt-20 ${
+        className={`flex-col items-center justify-center mt-12 ${
           filteredPokemon.length > 0 ? "blocked" : "hidden"
         }`}
       >

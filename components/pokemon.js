@@ -35,7 +35,7 @@ function Pokemon({ pokemon, types }) {
         N.°{pokemon?.id}
       </Text>
       <Text className="text-black font-extrabold text-center ">
-        {pokemon?.name[0].toUpperCase() + pokemon?.name.slice(1)}
+        {pokemon?.name}
       </Text>
       <View
         className={`mb-8 flex-row space-x-2 ${

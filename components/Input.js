@@ -19,14 +19,15 @@ const Input = () => {
   const [isTriggered, setIsTriggered] = useState(false);
   const pokemons = useSelector(getPokemons);
   const wrongAnswer = "You must type down a valid Pokemon's name";
-  const names = pokemons.map((pokemon) => pokemon.name);
+  const names = pokemons.map((pokemon) => pokemon.name.toLowerCase());
 
   const filterPokemons = () => {
     if (names.includes(pokemonName.toLowerCase().trim())) {
       dispatch(
         setPokemon(
           pokemons.filter(
-            (pokemon) => pokemon.name === pokemonName.toLowerCase().trim()
+            (pokemon) =>
+              pokemon.name.toLowerCase() === pokemonName.toLowerCase().trim()
           )
         )
       );

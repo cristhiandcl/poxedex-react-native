@@ -18,7 +18,6 @@ const client = axios.create({ baseURL: "https://pogoapi.net/" });
 
 function AppWrapper() {
   const Stack = createNativeStackNavigator();
-  const [isChange, setIsChange] = useState(false);
 
   const dispatch = useDispatch();
   const urls = [

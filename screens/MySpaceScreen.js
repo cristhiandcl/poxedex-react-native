@@ -32,7 +32,7 @@ const MySpaceScreen = () => {
   }, [isChanged]);
 
   const pokemons = useSelector(getPokemons).filter((pokemon) =>
-    savedPokemons?.includes(pokemon.name)
+    savedPokemons?.includes(pokemon.name.toLowerCase())
   );
 
   const onChange = (pokemon) => {
@@ -63,7 +63,7 @@ const MySpaceScreen = () => {
     >
       <TouchableOpacity
         className="absolute right-3 bottom-3"
-        onPress={() => deletePokemon(pokemon.name)}
+        onPress={() => deletePokemon(pokemon.name.toLowerCase())}
       >
         <TrashIcon size={30} color="green" />
       </TouchableOpacity>

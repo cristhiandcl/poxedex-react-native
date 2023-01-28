@@ -38,11 +38,10 @@ const HomeScreen = () => {
     (type, index) => type.pokemon_name !== types[index - 1]?.pokemon_name
   );
 
-  console.log(types);
   const signOutButton = () => {
     signOut(auth)
       .then(() => {
-        // Sign-out successful.
+        // Sign-out successfully.
         navigation.navigate("Login");
       })
       .catch((error) => {
