@@ -37,10 +37,22 @@ function Pokemon({ pokemon, types }) {
       <Text className="text-black font-extrabold text-center ">
         {pokemon?.name[0].toUpperCase() + pokemon?.name.slice(1)}
       </Text>
-      <View className="mb-8 flex-row">
+      <View
+        className={`mb-8 flex-row space-x-2 ${
+          filteredPokemon?.length === 1 && "mt-3"
+        }`}
+      >
         {type?.type?.map((type) => {
           const icon = typesImages[type.toLowerCase()].image;
-          return <Image source={icon} className="w-8 h-10" key={type} />;
+          return (
+            <Image
+              source={icon}
+              className={
+                filteredPokemon?.length === 1 ? "w-12 h-16" : "w-8 h-10"
+              }
+              key={type}
+            />
+          );
         })}
       </View>
     </TouchableOpacity>

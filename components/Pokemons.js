@@ -3,6 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import Pokemon from "./Pokemon";
 import { getPokemon } from "../slices/filterPokemonSlice";
+import { getPokemonsData } from "../slices/pokemonsDataSlice";
 
 // const client = axios.create({
 //   baseURL: "",
@@ -10,6 +11,13 @@ import { getPokemon } from "../slices/filterPokemonSlice";
 
 const Pokemons = ({ renderFullPokemons }) => {
   const filteredPokemon = useSelector(getPokemon);
+  const types = useSelector(getPokemonsData).filter(
+    (elem) => elem.length === 1175
+  )[0];
+
+  const filteredtypes = types?.filter(
+    (type, index) => type.pokemon_name !== types[index - 1]?.pokemon_name
+  );
 
   return (
     <View>
@@ -19,7 +27,7 @@ const Pokemons = ({ renderFullPokemons }) => {
         }`}
       >
         {filteredPokemon?.map((pokemon) => (
-          <Pokemon pokemon={pokemon} key={pokemon.id} />
+          <Pokemon pokemon={pokemon} key={pokemon.id} types={filteredtypes} />
         ))}
       </View>
       <View
