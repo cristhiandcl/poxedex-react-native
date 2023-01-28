@@ -7,12 +7,11 @@ import LoginScreen from "./screens/LoginScreen";
 import SignInScreen from "./screens/SignInScreen";
 import { store } from "./store";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { getPokemons, setPokemons } from "./slices/pokemonsSlice";
+import { setPokemons } from "./slices/pokemonsSlice";
 import PokemonDetailsScreen from "./screens/PokemonDetailsScreen";
 import MySpaceScreen from "./screens/MySpaceScreen";
 import { pokemons as pokemonsData } from "./pokemonsDataModify";
 import { getPokemonsData, setPokemonsData } from "./slices/pokemonsDataSlice";
-import { useState } from "react";
 
 const client = axios.create({ baseURL: "https://pogoapi.net/" });
 
@@ -25,9 +24,6 @@ function AppWrapper() {
     "/api/v1/pokemon_types.json",
     "/api/v1/pokemon_evolutions.json",
   ];
-
-  const data = useSelector(getPokemonsData);
-  const pokemons = useSelector(getPokemons);
 
   useMemo(() => {
     (async () => {
@@ -49,8 +45,7 @@ function AppWrapper() {
       );
     })();
   }, []);
-  console.log(pokemons);
-  // console.log(data);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
