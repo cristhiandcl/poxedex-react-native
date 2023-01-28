@@ -10,7 +10,7 @@ function Pokemon({ pokemon, types }) {
   const navigation = useNavigation();
   const filteredPokemon = useSelector(getPokemon);
 
-  const type = types.filter((type) => type.pokemon_id === pokemon.id)[0];
+  const type = types?.filter((type) => type.pokemon_id === pokemon.id)[0];
 
   return (
     <TouchableOpacity
