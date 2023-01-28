@@ -21,9 +21,9 @@ function AppWrapper() {
 
   const dispatch = useDispatch();
   const urls = [
+    "/api/v1/pokemon_names.json",
     "/api/v1/pokemon_types.json",
     "/api/v1/pokemon_evolutions.json",
-    "/api/v1/pokemon_names.json",
   ];
 
   const data = useSelector(getPokemonsData);
@@ -35,7 +35,7 @@ function AppWrapper() {
         urls.map((url) =>
           client.get(url).then((res) => {
             dispatch(setPokemonsData(res.data));
-            typeof res.data === "object" &&
+            !Array.isArray(res.data) &&
               dispatch(
                 setPokemons(
                   pokemonsData.map((pokemon, index) => ({
@@ -50,7 +50,7 @@ function AppWrapper() {
     })();
   }, []);
   console.log(pokemons);
-  console.log(data);
+  // console.log(data);
   return (
     <NavigationContainer>
       <Stack.Navigator>
