@@ -53,7 +53,7 @@ const PokemonDetailsScreen = () => {
     })();
   }, [displayMessage]);
 
-  const alert = !names?.includes(name)
+  const alert = !names?.includes(name.toLowerCase())
     ? "Added to your Pokedex"
     : "Removed from your Pokedex";
 
@@ -64,9 +64,9 @@ const PokemonDetailsScreen = () => {
       await setDoc(
         doc(db, "users", user.uid),
         {
-          saved: docSnap.data().saved?.includes(name)
-            ? arrayRemove(name)
-            : arrayUnion(name),
+          saved: docSnap.data().saved?.includes(name.toLowerCase())
+            ? arrayRemove(name.toLowerCase())
+            : arrayUnion(name.toLowerCase()),
         },
         { merge: true }
       );
@@ -90,7 +90,7 @@ const PokemonDetailsScreen = () => {
         <XCircleIcon size={50} color="green" />
       </TouchableOpacity>
       {!onUserScreen &&
-        (names?.includes(name) ? (
+        (names?.includes(name.toLowerCase()) ? (
           <TouchableOpacity
             className={
               Platform.OS === "ios"
