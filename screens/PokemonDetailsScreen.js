@@ -6,7 +6,7 @@ import {
   ScrollView,
   Platform,
 } from "react-native";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import PokemonDetails from "../components/PokemonDetails";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +27,7 @@ import { getAuth } from "firebase/auth";
 import { typesImages } from "../types";
 import { getPokemonsData } from "../slices/pokemonsDataSlice";
 import Evolution from "../components/Evolution";
+import { useScrollToTop } from "@react-navigation/native";
 
 const db = getFirestore(app);
 
@@ -41,6 +42,7 @@ const PokemonDetailsScreen = () => {
     params: { name, onUserScreen },
   } = useRoute();
   const user = getAuth(app).currentUser;
+  const scrollViewRef = useRef();
 
   const types = useSelector(getPokemonsData).filter(
     (elem) => elem.length === 1175
@@ -58,7 +60,8 @@ const PokemonDetailsScreen = () => {
     dispatch(
       setPokemon(pokemons?.filter((pokemon) => pokemon.name === name)[0])
     );
-  }, []);
+    scrollViewRef.current.scrollTo({ y: 0, animated: true });
+  }, [name]);
 
   useMemo(() => {
     (async () => {
@@ -144,7 +147,11 @@ const PokemonDetailsScreen = () => {
           N.°{pokemon?.id}
         </Text>
       </View>
-      <ScrollView className="" showsVerticalScrollIndicator={false}>
+      <ScrollView
+        className=""
+        showsVerticalScrollIndicator={false}
+        ref={scrollViewRef}
+      >
         <View className="items-center justify-center space-y-8">
           <Image
             source={{
@@ -176,12 +183,10 @@ const PokemonDetailsScreen = () => {
             </View>
           </View>
           <PokemonStats />
-          <View>
-            <Text className="font-extrabold text-center text-3xl mb-4">
-              Evolution
-            </Text>
-            <Evolution name={name} />
-          </View>
+          <Text className="font-extrabold text-center text-3xl mb-4">
+            Evolution
+          </Text>
+          <Evolution name={name} />
         </View>
       </ScrollView>
     </View>
