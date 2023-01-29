@@ -15,6 +15,12 @@ This project was created with react native Expo CLI and styled with TailwindCss 
 * react-native-animatable
 * react-native-heroicons
 
+## `Newest updates`
+
+https://user-images.githubusercontent.com/83930705/215353015-21936af7-26a7-478e-8dd5-fe1e5b5ec6f1.mov
+
+## `How to get it`
+
 Download the [ANDROID APK](https://expo.dev/accounts/thejokercompany/projects/pokedex/builds/35cf2bf2-d70e-476c-9f0c-93f7ba3b0daf) or 
 
 Try it on Expo Go
