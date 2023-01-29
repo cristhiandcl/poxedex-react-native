@@ -60,6 +60,12 @@ const HomeScreen = () => {
     );
   }, []);
 
+  const Item = ({ name }) => (
+    <View>
+      <Text>{name}</Text>
+    </View>
+  );
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <SafeAreaView

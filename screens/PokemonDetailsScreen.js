@@ -27,7 +27,6 @@ import { getAuth } from "firebase/auth";
 import { typesImages } from "../types";
 import { getPokemonsData } from "../slices/pokemonsDataSlice";
 import Evolution from "../components/Evolution";
-import { useScrollToTop } from "@react-navigation/native";
 
 const db = getFirestore(app);
 
