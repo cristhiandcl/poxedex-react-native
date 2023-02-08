@@ -25,7 +25,7 @@ Download the [ANDROID APK](https://expo.dev/accounts/thejokercompany/projects/po
 
 Try it on Expo Go
 
-* IOS (email me if you want to test it)
+* IOS (email me ( carrillocristhian2408@gmail.com ) if you want to test it)
 
 ![image](https://user-images.githubusercontent.com/83930705/214144351-4335fb68-2f18-4bc8-97f7-16f335e77545.png)
 
